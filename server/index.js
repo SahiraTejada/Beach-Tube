@@ -5,6 +5,7 @@ import userRoutes from './routes/users.js';
 import videoRoutes from './routes/videos.js';
 import commentRoutes from './routes/comments.js';
 import authRoutes from './routes/auth.js';
+import cokkieParser from 'cookie-parser';
 
 const app = express();
 dotnev.config();
@@ -19,6 +20,7 @@ const connect = () =>{
   })
 }
 
+app.use(cokkieParser())
 app.use(express.json());
 app.use('/api/users',userRoutes);
 app.use('/api/video',videoRoutes);
