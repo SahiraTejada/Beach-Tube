@@ -36,47 +36,50 @@ export const deleteUser = async (req,res,next) =>{
 }
 
 export const getUser = async(req,res,next) =>{
-   if(req.params.id === req.user.id){
+   
     try{
-         await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("User has been deleted")
+        const user = await User.findById(req.params.id);
+        res.status(200).json(user)
         
     }catch(err){
         next(err)
     }
 
-   }else{
-    return next(createError(403,'Only delete your account'))
-   }
 }
 
 export const subscribe = async (req,res,next) =>{
-   if(req.params.id === req.user.id){
+   
     try{
-         await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("User has been deleted")
-        
+        //Id del usuario
+         await User.findById(req.params.id,{
+            //Id del canal de los otros usuarios
+            $push:{subscribedUsers:req.params.id}
+         })
+         //Incrementar el numero de subscriptores
+         await User.findByIdAndUpdate(req.params.id,{
+            $inc:{subscribers:1},
+         });
+          res.status(200).json("Plus One subcriber")
     }catch(err){
         next(err)
-    }
-
-   }else{
-    return next(createError(403,'Only delete your account'))
-   }
+    }   
 }
 export const unsubscribe = async(req,res,next) =>{
-   if(req.params.id === req.user.id){
     try{
-         await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("User has been deleted")
-        
+        //Id del usuario
+         await User.findById(req.params.id,{
+            //Id del canal de los otros usuarios
+            //Borrar el Id del array del los subcriptores
+            $pull:{subscribedUsers:req.params.id}
+         })
+         //Disminuir el numero de subscriptores
+         await User.findByIdAndUpdate(req.params.id,{
+            $inc:{subscribers:-1},
+         });
+          res.status(200).json("Menus One subcriber")
     }catch(err){
         next(err)
-    }
-
-   }else{
-    return next(createError(403,'Only delete your account'))
-   }
+    }   
 }    
 
 export const like = async (req,res,next) =>{
