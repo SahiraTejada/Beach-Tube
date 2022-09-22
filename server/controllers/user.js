@@ -20,8 +20,19 @@ export const update = async (req,res,next) =>{
    }
 }
 
-export const deleteUser = (req,res,next) =>{
-   
+export const deleteUser = async (req,res,next) =>{
+   if(req.params.id === req.user.id){
+    try{
+         await User.findByIdAndDelete(req.params.id);
+        res.status(200).json("User has been deleted")
+        
+    }catch(err){
+        next(err)
+    }
+
+   }else{
+    return next(createError(403,'Only delete your account'))
+   }
 }
 
 export const getUser =(req,res,next) =>{
