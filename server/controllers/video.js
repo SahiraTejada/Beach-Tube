@@ -101,3 +101,26 @@ export const sub = async (req,res,next) =>{
 
  }catch(err){next(err)}
 }
+
+export const getBytag = async (req,res,next) =>{
+    const tags = req.query.tags.split(',')
+    console.log(tags)
+    try{
+        //selects the documents whose field holds an array that contains at least one element that matches a value in the specified array
+        const videos = await Video.find({tags:{$in:tags}}).limit(20);
+        res.status(200).json(videos);
+
+ }catch(err){next(err)}
+}
+
+
+export const search = async (req,res,next) =>{
+    const query = req.query.q;
+    try{
+        const videos = await Video.find({
+            title:{$regex:query,$options:'i'}//no importa qie este en minuscula
+        });
+        res.status(200).json(videos);
+
+ }catch(err){next(err)}
+}
