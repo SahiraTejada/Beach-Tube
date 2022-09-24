@@ -24,7 +24,7 @@ app.use(cokkieParser())
 app.use(express.json());
 app.use('/api/users',userRoutes);
 app.use('/api/videos',videoRoutes);
-app.use('/api/comment',commentRoutes);
+app.use('/api/comments',commentRoutes);
 app.use('/api/auth',authRoutes);
 //Manejar los errores
 app.use((err,req,res,next)=>{
