@@ -2,7 +2,6 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {Menu,NavBar} from './components/index';
 import {Home,Video} from './pages/index';
 import styled from 'styled-components';
-import './App.css';
 
 const Container = styled.div`
 display:flex;
@@ -27,7 +26,9 @@ function App() {
         <Wrapper>
           <Routes>
           <Route path='/'>
-            <Route index element={<Home/>}/>
+            <Route index element={<Home type='random'/>}/>
+            <Route path='trends' element={<Home type='trend'/>}/>
+            <Route path='subscriptions' element={<Home type='sub'/>}/>
             <Route path="video">
               <Route path=':id' element={<Video/>}>
               </Route>

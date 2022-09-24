@@ -35,6 +35,7 @@ const Img = styled.img`
 `;
 
 const Item = styled.div`
+color:white;
 display:flex;
 align-items:center;
 padding: 13px 0px;
@@ -49,6 +50,7 @@ const Text = styled.p`
 font-size: 0.9rem;
 cursor:pointer;
 
+
 `; 
 
 const Hr = styled.div`
@@ -58,6 +60,7 @@ border: 1px solid #303030;
 `;
 const Icons = styled.div`
 padding: 0px 20px;
+
 `;
 const Menu = () => {
   return (
@@ -73,14 +76,16 @@ const Menu = () => {
         <Icons><HomeIcon/></Icons>
        <Text> Principal</Text>
       </Item>
+      <Link to='trends' style={{textDecoration:'none'}}>
       <Item>
         <Icons><ExploreIcon/></Icons>
         <Text>Explorar</Text>
-      </Item>
+      </Item></Link>
+       <Link to='subscriptions' style={{textDecoration:'none'}}>
       <Item>
         <Icons><SubscriptionsIcon/></Icons>
         <Text>Suscripciones</Text>
-      </Item>
+      </Item></Link>
       <Hr/>
       <Item>
         <Icons><SlideshowSharpIcon /></Icons>

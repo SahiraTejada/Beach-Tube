@@ -1,5 +1,8 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {format} from "timeago.js";
 
 const Container= styled.div`
 width:${(props) => props.type === "sm" ? "370px":"230px"};
@@ -63,23 +66,39 @@ color: #aaaaaa !important;
 
 `;
 
-const Card = ({type}) => {
+const Card = ({type,video}) => {
+
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchChannel = async () => {
+      const res = await axios.get(`/users/find/${video.userId}`);
+      setChannel(res.data);
+    };
+    fetchChannel();
+  }, [video.userId]);
+
   return (
-     <Container type={type}>
-        <Link to='/video/test' style={{textDecoration:'none'}}>
-          <div>
-        <Image type={type} src='https://besthqwallpapers.com/Uploads/4-11-2021/180260/thumb2-netflix-red-logo-4k-red-brickwall-netflix-logo-brands.jpg'     alt='Video'/>
+    <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
+      <Container type={type}>
+        <Image
+          type={type}
+          src={video.imgUrl}
+        />
         <Details type={type}>
-        <ChannelImage type={type}/>
-        <Texts >
-          <Title >New Video</Title>
-          <ChannelName type={type}>Joe Winter</ChannelName>
-          <Info >660,908 vistas • hace 2 dias</Info>
-        </Texts>
-      </Details></div>
-      </Link>
-    </Container>
-  )
-}
+          <ChannelImage
+            type={type}
+            src={channel.img}
+          />
+          <Texts>
+            <Title>{video.title}</Title>
+            <ChannelName>{channel.name}</ChannelName>
+            <Info>{video.views} views • {format(video.createdAt)}</Info>
+          </Texts>
+        </Details>
+      </Container>
+    </Link>
+  );
+};
 
 export default Card
