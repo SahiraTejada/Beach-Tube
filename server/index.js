@@ -23,7 +23,7 @@ const connect = () =>{
 app.use(cokkieParser())
 app.use(express.json());
 app.use('/api/users',userRoutes);
-app.use('/api/video',videoRoutes);
+app.use('/api/videos',videoRoutes);
 app.use('/api/comment',commentRoutes);
 app.use('/api/auth',authRoutes);
 //Manejar los errores

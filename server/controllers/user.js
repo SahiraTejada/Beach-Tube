@@ -47,40 +47,37 @@ export const getUser = async(req,res,next) =>{
 
 }
 
-export const subscribe = async (req,res,next) =>{
-   
-    try{
-        //Id del usuario
-         await User.findById(req.params.id,{
-            //Id del canal de los otros usuarios
-            $push:{subscribedUsers:req.params.id}
-         })
-         //Incrementar el numero de subscriptores
-         await User.findByIdAndUpdate(req.params.id,{
-            $inc:{subscribers:1},
-         });
-          res.status(200).json("Plus One subcriber")
-    }catch(err){
-        next(err)
-    }   
-}
-export const unsubscribe = async(req,res,next) =>{
-    try{
-        //Id del usuario
-         await User.findById(req.params.id,{
-            //Id del canal de los otros usuarios
-            //Borrar el Id del array del los subcriptores
-            $pull:{subscribedUsers:req.params.id}
-         })
-         //Disminuir el numero de subscriptores
-         await User.findByIdAndUpdate(req.params.id,{
-            $inc:{subscribers:-1},
-         });
-          res.status(200).json("Menus One subcriber")
-    }catch(err){
-        next(err)
-    }   
-}    
+export const subscribe = async (req, res, next) => {
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      $push: { subscribedUsers: req.params.id },
+    });
+    await User.findByIdAndUpdate(req.params.id, {
+      $inc: { subscribers: 1 },
+    });
+    res.status(200).json("Subscription successfull.")
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const unsubscribe = async (req, res, next) => {
+  try {
+    try {
+      await User.findByIdAndUpdate(req.user.id, {
+        $pull: { subscribedUsers: req.params.id },
+      });
+      await User.findByIdAndUpdate(req.params.id, {
+        $inc: { subscribers: -1 },
+      });
+      res.status(200).json("Unsubscription successfull.")
+    } catch (err) {
+      next(err);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const like = async (req,res,next) =>{
    if(req.params.id === req.user.id){
