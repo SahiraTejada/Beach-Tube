@@ -95,7 +95,7 @@ const NavBar = () => {
         {/* <NavIcons>
       <VideoCallSharpIcon/>  </NavIcons>
          <NavIcons><Avatar></Avatar></NavIcons> */}
-         <Link  to='/' style={{textDecoration:'none'}}>
+         <Link  to='signin' style={{textDecoration:'none'}}>
         <NavIcons> <Button>
             <AccountCircleSharpIcon />
               acceder
