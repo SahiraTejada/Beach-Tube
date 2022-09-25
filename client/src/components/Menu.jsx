@@ -71,11 +71,11 @@ const Menu = () => {
            <Link to='/'>
           <Img src={Youtube} alt='Youtube'/></Link>
         </Logo>
-        
+        <Link to='/' style={{textDecoration:'none'}}>
       <Item>
         <Icons><HomeIcon/></Icons>
        <Text> Principal</Text>
-      </Item>
+      </Item></Link>
       <Link to='trends' style={{textDecoration:'none'}}>
       <Item>
         <Icons><ExploreIcon/></Icons>

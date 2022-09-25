@@ -4,64 +4,65 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {timeago} from './timeage_es';
 
-const Container= styled.div`
-width:${(props) => props.type === "sm" ? "370px":"230px"};
-padding-bottom:${(props) => props.type === "sm" ? "10px":"0px"};
-margin: ${(props) => props.type === "sm" ? "0px":"20px"};
-display: ${(props) => props.type === "sm" && "flex"};
-
-
+const Container = styled.div`
+  width: ${(props) => props.type !== "sm" && "240px"};
+  margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
+  cursor: pointer;
+  margin: ${(props) => props.type === "sm" ? "0px":"15px"};
+  display: ${(props) => props.type === "sm" && "flex"};
+  gap: 10px;
 `;
 
 const Image = styled.img`
-height: ${(props) => props.type === "sm" ? "110px":"155px"};
-width:${(props) => props.type === "sm" ? "180px":"245px"};
+  width: 100%;
+ height: ${(props) => props.type === "sm" ? "110px":"155px"};
+  background-color: #999;
+  flex: 1;
 `;
 
 const Details = styled.div`
-display: flex;
-margin-top:${(props) => props.type !== "sm" && "10px"};
+  display: flex;
+  margin-top:${(props) => props.type !== "sm" && "10px"};
 float: ${(props) => props.type === "sm" && "right"};
-flex:1
+  gap: 12px;
+  flex: 1;
+ 
 `;
 
 const ChannelImage = styled.img`
-border-radius: 50%;
-background-color: #999;
-width:35px;
-height:35px;
-display:${(props) => props.type === "sm" && "none"};
-padding:4px;
-
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #999;
+  display: ${(props) => props.type === "sm" && "none"};
 `;
 
 const Texts = styled.div`
-background-color:red;
 `;
 
 const Title = styled.h1`
-font-size:${(props) => props.type === "sm" ? "14px":"0.9rem;"};
-margin-right:0;
-over-flow-hidden;
-text-overflow: ellipsis; 
-white-space:wrap;
-font-weight: 500;
-letter-spacing:0.1px;
-color:white;
-margin-bottom:5px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  margin-bottom:5px;
+  display: inline-block;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2; // max nb lines to show
+-webkit-box-orient: vertical;
+    
 `;
 
 const ChannelName = styled.p`
-font-size: "14px";
-color: #aaaaaa !important;
-line-height: ${(props) => props.type === "sm" && "20px"};
+  font-size: 14px;
+  color: #aaaaaa ;
+  margin:7px 0px;
 `;
 
-
-const Info = styled.p`
-font-size: 14px;
-color: #aaaaaa !important;
-
+const Info = styled.div`
+  font-size: 14px;
+  color:  #aaaaaa;
 `;
 
 const Card = ({ type, video }) => {
@@ -83,10 +84,11 @@ const Card = ({ type, video }) => {
           src={video.imgUrl}
         />
         <Details type={type}>
+          <div>
           <ChannelImage
             type={type}
             src={channel.img}
-          />
+          /></div>
           <Texts>
             <Title>{video.title}</Title>
             <ChannelName>{channel.name}</ChannelName>
@@ -98,4 +100,4 @@ const Card = ({ type, video }) => {
   );
 };
 
-export default Card
+export default Card;

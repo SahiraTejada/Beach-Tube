@@ -1,6 +1,6 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {Menu,NavBar} from './components/index';
-import {Home,Video} from './pages/index';
+import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
 
 const Container = styled.div`

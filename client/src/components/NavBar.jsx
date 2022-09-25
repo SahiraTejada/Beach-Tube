@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import { Link } from "react-router-dom";
 const Container = styled.div`
 position:sticky;
 top:0px;
@@ -52,6 +54,7 @@ const Button = styled.button`
   align-items: center;
   gap: 5px;
   text-transform:uppercase;
+  margin-bottom: 10px;
 `;
 
 const Hr = styled.div`
@@ -76,7 +79,8 @@ background-color: #313131 !important;
 
 const NavIcons = styled.div`
 padding: 0px 10px;
-cursor:pointer; 
+cursor:pointer;
+
 `;
 
 const NavBar = () => {
@@ -88,13 +92,14 @@ const NavBar = () => {
           <SearchIcon>
           <SearchSharpIcon style={{padding:'7px', opacity: '0.8'}}/></SearchIcon>
         </Search>  
-        <NavIcons>
-        <VideoCallSharpIcon/>  </NavIcons>
-         <NavIcons><Avatar></Avatar></NavIcons>
-          {/*<Button>
-            <AccountCircleOutlinedIcon />
+        {/* <NavIcons>
+      <VideoCallSharpIcon/>  </NavIcons>
+         <NavIcons><Avatar></Avatar></NavIcons> */}
+         <Link  to='/' style={{textDecoration:'none'}}>
+        <NavIcons> <Button>
+            <AccountCircleSharpIcon />
               acceder
-          </Button>*/} 
+          </Button> </NavIcons> </Link>
       </Wrapper>
      
     </Container>
