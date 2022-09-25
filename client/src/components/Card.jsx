@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
-// import {format} from "timeago.js";
-import {timeago} from './timeage_es.js';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import {timeago} from './timeage_es';
 
 const Container= styled.div`
 width:${(props) => props.type === "sm" ? "370px":"230px"};
@@ -23,6 +22,7 @@ const Details = styled.div`
 display: flex;
 margin-top:${(props) => props.type !== "sm" && "10px"};
 float: ${(props) => props.type === "sm" && "right"};
+flex:1
 `;
 
 const ChannelImage = styled.img`
@@ -31,15 +31,12 @@ background-color: #999;
 width:35px;
 height:35px;
 display:${(props) => props.type === "sm" && "none"};
+padding:4px;
 
 `;
 
 const Texts = styled.div`
-padding-left:10px;
-over-flow-hidden;
-text-overflow: ellipsis; 
-flex-wrap:wrap;
-
+background-color:red;
 `;
 
 const Title = styled.h1`
@@ -67,8 +64,7 @@ color: #aaaaaa !important;
 
 `;
 
-const Card = ({type,video}) => {
-
+const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
@@ -94,7 +90,7 @@ const Card = ({type,video}) => {
           <Texts>
             <Title>{video.title}</Title>
             <ChannelName>{channel.name}</ChannelName>
-            <Info>{video.views} views • {timeago(video.createdAt)}</Info>
+            <Info>{video.views} vistas • {timeago(video.createdAt)}</Info>
           </Texts>
         </Details>
       </Container>
