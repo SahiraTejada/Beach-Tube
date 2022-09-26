@@ -4,6 +4,13 @@ import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
 import {Container,Main,Wrapper} from './appStyles.js';
 
+const Page = styled.div`
+background-color: #181818;
+color:white;
+width:100%;
+height : 100vh;
+`
+
 export const RandomContext = () => {
   return (
    <>
@@ -32,7 +39,7 @@ export const VideoContext = () => {
 
 export const SigninContext = () => {
   return (
-    <><Main><SignIn/></Main></>
+    <Page><SignIn/></Page>
   )
 }
 

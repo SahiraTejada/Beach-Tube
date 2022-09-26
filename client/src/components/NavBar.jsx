@@ -1,8 +1,11 @@
+import React, { useState } from "react";
 import styled from 'styled-components';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 const Container = styled.div`
 position:sticky;
 top:0px;
@@ -72,8 +75,8 @@ cursor:pointer;
 `;
 const Avatar= styled.div`
 border-radius:50%;
-height:40px;
-width:40px;
+height:35px;
+width:35px;
 background-color: #313131 !important;
 `;
 
@@ -83,7 +86,16 @@ cursor:pointer;
 
 `;
 
+const User = styled.div`
+display:flex;
+align-items:center;
+gap:12px;
+cursor: pointer;
+`;
+
+
 const NavBar = () => {
+  const { currentUser } = useSelector((state) => state.user);
   return (
      <Container>
       <Wrapper>
@@ -95,11 +107,13 @@ const NavBar = () => {
         {/* <NavIcons>
       <VideoCallSharpIcon/>  </NavIcons>
          <NavIcons><Avatar></Avatar></NavIcons> */}
-         <Link  to='signin' style={{textDecoration:'none'}}>
+         { currentUser ? (<User>
+      <VideoCallSharpIcon/>  
+         <Avatar/>{currentUser.name}</User>) : (<Link  to='signin' style={{textDecoration:'none'}}>
         <NavIcons> <Button>
             <AccountCircleSharpIcon />
               acceder
-          </Button> </NavIcons> </Link>
+          </Button> </NavIcons> </Link>)}
       </Wrapper>
      
     </Container>
