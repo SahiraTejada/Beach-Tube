@@ -109,7 +109,7 @@ const NavBar = () => {
          <NavIcons><Avatar></Avatar></NavIcons> */}
          { currentUser ? (<User>
       <VideoCallSharpIcon/>  
-         <Avatar/>{currentUser.name}</User>) : (<Link  to='signin' style={{textDecoration:'none'}}>
+         <Avatar src={currentUser.img}/>{currentUser.name}</User>) : (<Link  to='signin' style={{textDecoration:'none'}}>
         <NavIcons> <Button>
             <AccountCircleSharpIcon />
               acceder
