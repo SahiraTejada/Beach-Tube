@@ -1,8 +1,15 @@
+import React,{ useState,useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ReplyIcon from '@mui/icons-material/Reply';
 import {Card,Comments} from '../components';
+import axios from 'axios';
+import { useDispatch,useSelector } from "react-redux";
+
+import { async } from '@firebase/util';
+
 
 const Container = styled.div`
 margin: 10px;
@@ -103,6 +110,26 @@ const Description = styled.p`
 font-size:14px;`;
 
 const Video = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const dispacth = useDispatch();
+  const path = useLocation().pathname.split("/")[2];
+  const [video,setVideo] = useState({});
+  const [channel,setChannel] = useState({});
+  useEffect(()=>{
+    const fecthData = async () =>{
+      try{
+        const videoRes = await axios.get(`/videos/find/${path}`);
+        const channelRes = await axios.get(`/videos/find/${videoRes.userId}`);
+
+        setVideo(videoRes.data);
+        setChannel(channelRes.data);
+      }catch(err){
+
+      }
+    }
+    fecthData()
+  },[path])
+  console.log(path);
   return (
     <Container>
      <Content>
@@ -145,6 +172,7 @@ const Video = () => {
 				<Hr/>
 				<Comments/>
       </Content>
+     {/*
       <Recommendation>
 				<Card type="sm"/>
         <Card type="sm"/>
@@ -159,7 +187,7 @@ const Video = () => {
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>				
-			</Recommendation>
+			</Recommendation>*/}
     </Container>
   )
 }
