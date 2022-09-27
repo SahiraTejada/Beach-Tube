@@ -73,11 +73,11 @@ const SearchIcon = styled.div`
 text-align: center;
 cursor:pointer;  
 `;
-const Avatar= styled.div`
+const Avatar= styled.img`
 border-radius:50%;
 height:35px;
 width:35px;
-background-color: #313131 !important;
+ background-color: #999;
 `;
 
 const NavIcons = styled.div`
@@ -95,6 +95,9 @@ cursor: pointer;
 
 
 const NavBar = () => {
+ 
+    const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   return (
      <Container>
@@ -104,16 +107,21 @@ const NavBar = () => {
           <SearchIcon>
           <SearchSharpIcon style={{padding:'7px', opacity: '0.8'}}/></SearchIcon>
         </Search>  
-        {/* <NavIcons>
-      <VideoCallSharpIcon/>  </NavIcons>
-         <NavIcons><Avatar></Avatar></NavIcons> */}
-         { currentUser ? (<User>
-      <VideoCallSharpIcon/>  
-         <Avatar src={currentUser.img}/>{currentUser.name}</User>) : (<Link  to='signin' style={{textDecoration:'none'}}>
-        <NavIcons> <Button>
-            <AccountCircleSharpIcon />
-              acceder
-          </Button> </NavIcons> </Link>)}
+      
+     {currentUser ? (
+            <User>
+              <VideoCallSharpIcon onClick={() => setOpen(true)} />
+              <Avatar src={currentUser.img} />
+              {currentUser.name}
+            </User>
+          ) : (
+            <Link to="signin" style={{ textDecoration: "none" }}>
+              <Button>
+                <AccountCircleSharpIcon />
+                SIGN IN
+              </Button>
+            </Link>
+          )}
       </Wrapper>
      
     </Container>
