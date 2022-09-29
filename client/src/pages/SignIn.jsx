@@ -56,6 +56,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate()
  
 
   const handleLogin = async (e) => {
@@ -64,11 +65,13 @@ const SignIn = () => {
     try {
       const res = await axios.post("/auth/signin", { name, password });
       dispatch(loginSuccess(res.data));
+      navigate('/')
       
     } catch (err) {
       dispatch(loginFailure());
     }
   };
+
 
   const signInWithGoogle = async () => {
     dispatch(loginStart());

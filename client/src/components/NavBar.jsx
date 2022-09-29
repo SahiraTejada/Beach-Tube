@@ -5,6 +5,7 @@ import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import Upload from "./Upload";
 
 const Container = styled.div`
 position:sticky;
@@ -77,7 +78,7 @@ const Avatar= styled.img`
 border-radius:50%;
 height:35px;
 width:35px;
- background-color: #999;
+
 `;
 
 const NavIcons = styled.div`
@@ -100,6 +101,7 @@ const NavBar = () => {
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   return (
+    <>
      <Container>
       <Wrapper>
         <Search>
@@ -125,6 +127,8 @@ const NavBar = () => {
       </Wrapper>
      
     </Container>
+    {open && <Upload setOpen={setOpen}/>}
+    </>
   )
 }
 
