@@ -78,7 +78,7 @@ const Avatar= styled.img`
 border-radius:50%;
 height:35px;
 width:35px;
-
+background-color: #aaaaaa;
 `;
 
 const NavIcons = styled.div`
