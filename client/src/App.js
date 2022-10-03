@@ -2,7 +2,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {Menu,NavBar} from './components/index';
 import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
-import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext} from './AppContext.js'
+import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext} from './AppContext.js'
 
 const Container = styled.div`
 display:flex;
@@ -30,7 +30,7 @@ function App() {
             <Route index element={<RandomContext />}/>
             <Route path='trends' element={<TrendsContext/>}/>
             <Route path='subscriptions' element={<SubContext/>}/>
-           
+            <Route path='search' element={<SearchContext/>}/>
             <Route path="video">
               <Route path=':id' element={<VideoContext/>}>
               </Route>

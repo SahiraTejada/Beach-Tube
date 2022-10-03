@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+import {useState,useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import Comment from './Comment';
+import axios from 'axios';
 
 const Container = styled.div`
 
@@ -29,23 +32,35 @@ font-weight: 400;
 line-height: 20px;
 margin:5px;
 `;
-const Comments = () => {
+const Comments = ({videoId}) => {
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const res = await axios.get(`/comments/${videoId}`);
+        setComments(res.data);
+      } catch (err) {}
+    };
+    fetchComments();
+  }, [videoId]);
+
+  //TODO: ADD NEW COMMENT FUNCTIONALITY
+
   return (
     <Container>
       <NewComment>
-        <Avatar src='https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528'/>
-        <Input placeholder='Agrega un comentario...'/>
+        <Avatar src={currentUser.img} />
+        <Input placeholder="Add a comment..." />
       </NewComment>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
+      {comments.map(comment=>(
+        <Comment key={comment._id} comment={comment}/>
+      ))}
     </Container>
-  )
-}
+  );
+};
 
 export default Comments

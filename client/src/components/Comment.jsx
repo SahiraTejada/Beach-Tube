@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import {timeago} from './timeage_es';
 
 const Container = styled.div`
 display:flex;
@@ -31,18 +34,27 @@ const Text = styled.span`
 font-size:14px;
 
 `;
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const res = await axios.get(`/users/find/${comment.userId}`);
+      setChannel(res.data)
+    };
+    fetchComment();
+  }, [comment.userId]);
+
   return (
     <Container>
-       <Avatar src='https://www.facebeautyscience.com/wp-content/uploads/2020/04/face-beauty-skin-face2-proc.jpg'/>
-       <Details>
+      <Avatar src={channel.img} />
+      <Details>
         <Name>
-            Ana Lopez <Date>hace 9 dias</Date>
+          {channel.name} <Date>{timeago(comment.createdAt)}</Date>
         </Name>
-        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur culpa excepturi beatae ipsum dolores quam quisquam. Perspiciatis provident rem nihil molestiae modi! Eius provident expedita ex sit amet blanditiis iusto!</Text>
-       </Details>
+        <Text>{comment.desc}</Text>
+      </Details>
     </Container>
-  )
-}
-
+  );
+};
 export default Comment

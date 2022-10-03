@@ -16,6 +16,7 @@ import axios from "axios";
 import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { subscription } from "../redux/userSlice";
 import {timeago} from '../components/timeage_es';
+import Recomendation from "../components/Recomendation";
 
 const Container = styled.div`
 margin: 10px;
@@ -29,10 +30,7 @@ margin-left:20px;
   
 `;
 
-const Recommendation = styled.div`
-flex:2.3; 
-padding-left: 22px
-`;
+
 const VideoWrapper = styled.div`
 
 `;
@@ -216,24 +214,9 @@ const Video = () => {
         </Channel>
      
 				<Hr/>
-				<Comments/>
+				<Comments videoId ={currentVideo._id}/>
       </Content>
-     {/*
-      <Recommendation>
-				<Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>				
-			</Recommendation>*/}
+    <Recomendation tags={currentVideo.tags}/>
     </Container>
   )
 };

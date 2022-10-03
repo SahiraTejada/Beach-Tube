@@ -1,6 +1,6 @@
 import React from 'react'
 import {Menu,NavBar} from './components/index';
-import {Home,Video,SignIn} from './pages/index';
+import {Home,Video,SignIn,Search} from './pages/index';
 import styled from 'styled-components';
 import {Container,Main,Wrapper} from './appStyles.js';
 
@@ -67,3 +67,15 @@ return (
   )
 }
 
+
+export const SearchContext = () =>{
+return (
+     <>
+        <Menu/>
+      <Main>
+        <NavBar/>
+        <Wrapper>
+       <Search/></Wrapper></Main>
+    </>
+  )
+}
