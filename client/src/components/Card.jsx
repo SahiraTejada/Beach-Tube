@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {timeago} from './timeage_es';
+import {fetchSuccess} from '../redux/videoSlice'
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "240px"};
@@ -67,6 +69,8 @@ const Info = styled.div`
 
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
+  const [title, setTitle] = useState("");
+  const dispacth = useDispatch();
 
   useEffect(() => {
     const fetchChannel = async () => {
@@ -75,10 +79,12 @@ const Card = ({ type, video }) => {
     };
     fetchChannel();
   }, [video.userId]);
-
+  
+  
   return (
-    <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
-      <Container type={type}>
+    
+      <Container type={type}  title = {video.title} >
+        <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
         <Image
           type={type}
           src={video.imgUrl}
@@ -90,13 +96,13 @@ const Card = ({ type, video }) => {
             src={channel.img}
           /></div>
           <Texts>
-            <Title>{video.title}</Title>
+            <Title >{video.title}</Title>
             <ChannelName>{channel.name}</ChannelName>
             <Info>{video.views} vistas • {timeago(video.createdAt)}</Info>
           </Texts>
-        </Details>
+        </Details>    </Link>
       </Container>
-    </Link>
+
   );
 };
 

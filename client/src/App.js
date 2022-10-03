@@ -22,15 +22,15 @@ function App() {
    <Container>
       <BrowserRouter>
       
-          <Routes>
+          <Routes> <Route
+                    path="/signin"
+                    element={ <SigninContext />}
+                  />
           <Route path='/'>
             <Route index element={<RandomContext />}/>
             <Route path='trends' element={<TrendsContext/>}/>
             <Route path='subscriptions' element={<SubContext/>}/>
-            <Route
-                    path="signin"
-                    element={ <SigninContext />}
-                  />
+           
             <Route path="video">
               <Route path=':id' element={<VideoContext/>}>
               </Route>

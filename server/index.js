@@ -6,6 +6,7 @@ import videoRoutes from './routes/videos.js';
 import commentRoutes from './routes/comments.js';
 import authRoutes from './routes/auth.js';
 import cokkieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 dotnev.config();
@@ -20,8 +21,15 @@ const connect = () =>{
   })
 }
 
+app.use(cors());
 app.use(cokkieParser())
 app.use(express.json());
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+    next(); 
+})
 app.use('/api/users',userRoutes);
 app.use('/api/videos',videoRoutes);
 app.use('/api/comments',commentRoutes);

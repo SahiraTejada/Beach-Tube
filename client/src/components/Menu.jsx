@@ -7,7 +7,8 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import SlideshowSharpIcon from '@mui/icons-material/SlideshowSharp';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
+
 
 const Container = styled.div`
  flex:1.5;
@@ -63,6 +64,7 @@ padding: 0px 20px;
 
 `;
 const Menu = () => {
+  const navigate = useNavigate();
   return (
  <Container>
       <Wrapper>

@@ -1,15 +1,21 @@
-import React,{ useState,useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
+import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import ReplyIcon from '@mui/icons-material/Reply';
-import {Card,Comments} from '../components';
-import axios from 'axios';
-import { useDispatch,useSelector } from "react-redux";
-
-import { async } from '@firebase/util';
-
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import Comments from "../components/Comments";
+import Card from "../components/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { dislike, fetchSuccess, like } from "../redux/videoSlice";
+import { subscription } from "../redux/userSlice";
+import {timeago} from '../components/timeage_es';
 
 const Container = styled.div`
 margin: 10px;
@@ -109,66 +115,106 @@ color: #AAAAAA;
 const Description = styled.p`
 font-size:14px;`;
 
+const VideoFrame = styled.video`
+  max-height: 720px;
+  width: 100%;
+  object-fit: cover;
+`;
+
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const dispacth = useDispatch();
+  const { currentVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+
   const path = useLocation().pathname.split("/")[2];
-  const [video,setVideo] = useState({});
-  const [channel,setChannel] = useState({});
-  useEffect(()=>{
-    const fecthData = async () =>{
-      try{
+
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
         const videoRes = await axios.get(`/videos/find/${path}`);
-        const channelRes = await axios.get(`/videos/find/${videoRes.userId}`);
-
-        setVideo(videoRes.data);
+        const channelRes = await axios.get(
+          `/users/find/${videoRes.data.userId}`
+        );
         setChannel(channelRes.data);
-      }catch(err){
+        dispatch(fetchSuccess(videoRes.data));
+      } catch (err) {}
+    };
+    fetchData();
+  }, [path, dispatch]);
 
-      }
-    }
-    fecthData()
-  },[path])
-  console.log(path);
+  const handleLike = async () => {
+    await axios.put(`/users/like/${currentVideo._id}`);
+    dispatch(like(currentUser._id));
+  };
+  const handleDislike = async () => {
+    await axios.put(`/users/dislike/${currentVideo._id}`);
+    dispatch(dislike(currentUser._id));
+  };
+
+  const handleSub = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(`/users/unsub/${channel._id}`)
+      : await axios.put(`/users/sub/${channel._id}`);
+    dispatch(subscription(channel._id));
+  };
+
+  //TODO: DELETE VIDEO FUNCTIONALITY
+
   return (
     <Container>
      <Content>
+      
         <VideoWrapper>
-           <iframe
-            width="100%"
-            height="420"
-            src="https://www.youtube.com/embed/k3Vfj-e1Ma4"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <VideoFrame src={currentVideo.videoUrl} controls />
         </VideoWrapper>
-        <Title>Test Video</Title>
+        <Title >{currentVideo.title}</Title>
         <Details>
-          <Info>7,986,000 vistas • hace 3 meses</Info>
+         {/*<Try/>*/} 
+          <Info>{currentVideo.views} vistas • {timeago(currentVideo.createdAt)}</Info>
           <Buttons>
             
-            <Button><ThumbUpIcon/>123</Button>
-            <Button><ThumbDownAltIcon/>56</Button>
-           
-            <Button><ReplyIcon/>Compartir</Button>
+             <Button onClick={handleLike}>
+              {currentVideo.likes?.includes(currentUser?._id) ? (
+                <ThumbUpIcon />
+              ) : (
+                <ThumbUpOutlinedIcon />
+              )}{" "}
+              {currentVideo.likes?.length}
+            </Button>
+            <Button onClick={handleDislike}>
+              {currentVideo.dislikes?.includes(currentUser?._id) ? (
+                <ThumbDownIcon />
+              ) : (
+                <ThumbDownOffAltOutlinedIcon />
+              )}{" "}
+              No me gusta
+            </Button>
+            <Button>
+              <ReplyIcon />Compartir
+            </Button>
     
           </Buttons>
         </Details>
         <Hr/>
         <Channel>
           <ChannelInfo>
-						<Image src='https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528'/>
+						<Image src={channel.img}/>
 					
 					<ChannelDetail>
-						<ChannelName>Juan Mendez</ChannelName>
-						<ChannelCounter>10,800 suscriptores</ChannelCounter>
-						<Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt commodi vitae harum nam eveniet culpa. In consectetur, libero porro officia dolorem sint s!vnfknvlfknvlkfndvlkbfvieobfov Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam corporis vitae a, facilis illo odit at quidem unde odio fugiat ad alias? Blanditiis possimus ex quidem neque dolores, odio recusandae, reprehenderit aspernatur deleniti itaque ipsam corrupti fugit! Excepturi, nihil. Obcaecati officia temporibus voluptates. Voluptas, perspiciatis repudiandae consequuntur quibusdam in fugiat.</Description>
+						<ChannelName>{channel.name}</ChannelName>
+						<ChannelCounter>{channel.subscribers} suscriptores</ChannelCounter>
+						<Description>{currentVideo.desc}</Description>
 					</ChannelDetail>
 					</ChannelInfo>
-          <Subscribe>Subcribirse</Subscribe>
+         <Subscribe onClick={handleSub}>
+            {currentUser.subscribedUsers?.includes(channel._id)
+              ? "subscrito"
+              : "subscribirse"}
+          </Subscribe>
         </Channel>
+     
 				<Hr/>
 				<Comments/>
       </Content>
@@ -190,6 +236,6 @@ const Video = () => {
 			</Recommendation>*/}
     </Container>
   )
-}
+};
 
-export default Video
+export default Video;

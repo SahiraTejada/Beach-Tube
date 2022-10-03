@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Upload from "./Upload";
+import Popover from '@mui/material/Popover';
+import Popper from '@mui/material/Popper';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 const Container = styled.div`
 position:sticky;
@@ -60,7 +63,23 @@ const Button = styled.button`
   text-transform:uppercase;
   margin-bottom: 10px;
 `;
-
+const Content = styled.div`
+  position: static;
+  justify-content: space-evenly;
+  background-color: #202020;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 20px 0px;
+  border: solid #303030;
+  border-width: 1px 1px;
+  z-index: 1;
+  margin-top:15px;
+  opacity: 0.97; 
+  width:220px;
+  margin-right:20px;
+   
+`
 const Hr = styled.div`
 margin: 15px 0px;
 border: 1px solid #303030; 
@@ -95,11 +114,42 @@ cursor: pointer;
 `;
 
 
+const Logout = styled.div`
+display:flex;
+align-items:center;
+padding: 10px 0px;
+justify-content: center; 
+color:white;
+&:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor:pointer;
+  }
+`
+const DetailsAccount = styled.p`
+padding: 0px 0px;
+
+`;
+
+
+
 const NavBar = () => {
  
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const handleNavigate = () => {
+    navigate('/signin')
+  }
+  const opened = Boolean(anchorEl);
+  const id = opened ? 'simple-popper' : undefined;
+  
   return (
     <>
      <Container>
@@ -113,8 +163,25 @@ const NavBar = () => {
      {currentUser ? (
             <User>
               <VideoCallSharpIcon onClick={() => setOpen(true)} />
-              <Avatar src={currentUser.img} />
-              {currentUser.name}
+              <Avatar src={currentUser.img} onClick={handleClick}/>
+             
+               <Popper id={id} open={opened} anchorEl={anchorEl} className='popper'>
+     
+       <Content>
+       
+       <DetailsAccount > {currentUser.name}</DetailsAccount>
+     
+       <DetailsAccount style={{paddingTop:'7px'}}> {currentUser.email}</DetailsAccount>
+   
+       <Hr/>
+        
+        <div onClick={handleNavigate}>
+       <Logout style={{ textDecoration: "none" }}>
+      <LogoutRoundedIcon style={{paddingRight:'5px'}}/> Cerrar sesión</Logout> </div>
+       </Content>
+       
+      </Popper>
+             
             </User>
           ) : (
             <Link to="signin" style={{ textDecoration: "none" }}>
@@ -128,6 +195,7 @@ const NavBar = () => {
      
     </Container>
     {open && <Upload setOpen={setOpen}/>}
+    
     </>
   )
 }

@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 600px;
-  height: 600px;
+  height: 500px;
   background-color: #202020;
   color:white;
   padding: 20px;
@@ -48,7 +48,7 @@ const Input = styled.input`
   border: 1px solid #aaaaaa;
   color:white;
   border-radius: 3px;
-  padding: 10px;
+  padding: 7px;
   background-color: transparent;
   z-index: 999;
 `;
@@ -56,13 +56,13 @@ const Desc = styled.textarea`
   border: 1px solid #aaaaaa;
   color:white;
   border-radius: 3px;
-  padding: 10px;
+  padding: 7px;
   background-color: transparent;
 `;
 const Button = styled.button`
   border-radius: 3px;
   border: none;
-  padding: 10px 20px;
+  padding: 7px 20px;
   font-weight: 500;
   cursor: pointer;
   background-color: #aaaaaa;
