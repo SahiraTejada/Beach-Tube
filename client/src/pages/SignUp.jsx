@@ -3,14 +3,9 @@ import app from "../firebase";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
+import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-//import { auth, provider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
-import { async } from "@firebase/util";
-import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import userDefault from '../imgs/usuario.svg';
 import { useEffect } from "react";
 
 
@@ -207,10 +202,10 @@ const SignIn = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>Sign in</Title>
-        <SubTitle>to continue to LamaTube</SubTitle>
+        <Title>Sign Up</Title>
        
-        <Title>or</Title>
+       
+     
         <Input
           placeholder="username"
           name="name"

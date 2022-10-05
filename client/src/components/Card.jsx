@@ -3,23 +3,24 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link ,useNavigate} from "react-router-dom";
 import styled from "styled-components";
-import {timeago} from './timeage_es';
+import {timeago} from '../timeage_es';
 import Avatar from '@mui/material/Avatar';
-import {fetchSuccess} from '../redux/videoSlice';
+import {fetchSuccess} from '../features/videoSlice';
 import UserDefault from '../imgs/user (2).png'
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "240px"};
-  margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
+  margin-bottom: ${(props) => (props.type !== "sm" && "45px")};
   cursor: pointer;
   margin: ${(props) => props.type === "sm" ? "0px":"15px"};
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;
+  padding-bottom: ${(props) => props.type === "sm" && "15px"};
   
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: ${(props) => props.type === "sm" ? "200px":" 100%"};
  height: ${(props) => props.type === "sm" ? "110px":"155px"};
   background-color: #999;
   flex: 1;

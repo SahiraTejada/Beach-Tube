@@ -2,15 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
-
-//import { auth, provider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
-import { async } from "@firebase/util";
-import { useSelector } from 'react-redux';
+import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
-
+import TextField from '@mui/material/TextField';
+import Youtube from '../imgs/logo1.png'
 import { useEffect } from "react";
+import { grey, red } from '@mui/material/colors';
 
 
 const Container = styled.div`
@@ -19,21 +16,23 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: calc(100vh - 56px);
-  color: ${({ theme }) => theme.text};
+  color: white;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bgLighter};
-  border: 1px solid ${({ theme }) => theme.soft};
+  background-color: #333333;
+  color:white;
+  border-radius :10px;
   padding: 20px 50px;
   gap: 10px;
 `;
 
 const Title = styled.h1`
   font-size: 24px;
+  padding:15px;
 `;
 
 const SubTitle = styled.h2`
@@ -80,7 +79,12 @@ color:white;
 cursor:pointer;
 `
 
+const Img = styled.img`
+ width: 200px;
+ 
 
+
+`;
 const SignIn = () => {
 
   const [name, setName] = useState("");
@@ -93,7 +97,7 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post("/auth/signin", { name, password });
+      const res = await axios.post("/auth/signin", { email, password });
       dispatch(loginSuccess(res.data));
       navigate("/")
     } catch (err) {
@@ -136,41 +140,18 @@ const SignIn = () => {
         console.log("ero")
       });
   };*/
-
+const primary = red[500]; // #f44336
   
   return (
     <Container>
       <Wrapper>
+         <Img src={Youtube} alt='Youtube'/>
         <Title>Sign in</Title>
-        <SubTitle>to continue to LamaTube</SubTitle>
-        <Input
-          placeholder="username"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+       
+        <TextField id="outlined-basic" label="Email" type='email' color="secondary" variant="outlined" onChange={(e) => setEmail(e.target.value)}/>
+
+         <TextField id="outlined-basic" label="Contraseña" color="secondary" type="password" variant="outlined"  onChange={(e) => setPassword(e.target.value)}/>
         <Button onClick={handleLogin}>Sign in</Button>
-        <Title>or</Title>
-        <Button //onClick={signInWithGoogle}
-        >Signin with Google</Button>
-        <Title>or</Title>
-     
-        <Title>or</Title>
-        <Input
-          placeholder="username"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-        <Input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button onClick={handleSignUp}>Sign up</Button>
-        
         <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
         
       </Wrapper>

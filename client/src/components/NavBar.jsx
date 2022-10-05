@@ -11,7 +11,7 @@ import Popper from '@mui/material/Popper';
 import Avatar from '@mui/material/Avatar';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import axios from 'axios';
-import { logout } from "../redux/userSlice";
+import { logout } from "../features/userSlice";
 import Youtube from '../imgs/logo1.png';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
 import UserDefault from '../imgs/user (2).png'

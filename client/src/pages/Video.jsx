@@ -13,9 +13,9 @@ import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { dislike, fetchSuccess, like } from "../redux/videoSlice";
-import { subscription } from "../redux/userSlice";
-import {timeago} from '../components/timeage_es';
+import { dislike, fetchSuccess, like } from "../features/videoSlice";
+import { subscription } from "../features/userSlice";
+import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
 import Avatar from '@mui/material/Avatar';
 

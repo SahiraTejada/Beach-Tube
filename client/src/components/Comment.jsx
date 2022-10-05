@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
-import {timeago} from './timeage_es';
+import {timeago} from '../timeage_es';
 import UserDefault from '../imgs/user (2).png'
 
 const Container = styled.div`
@@ -32,8 +32,8 @@ font-size:14px;
 
 `;
 const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color:white;
 `;

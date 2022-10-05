@@ -2,7 +2,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {Menu,NavBar} from './components/index';
 import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
-import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext,SignUpContext} from './AppContext.js'
+import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext,SignUpContext} from './Pages.js'
 
 const Container = styled.div`
 display:flex;
