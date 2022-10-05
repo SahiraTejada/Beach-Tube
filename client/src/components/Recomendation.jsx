@@ -5,6 +5,7 @@ import Card from './Card'
 
 const Container = styled.div`
 flex:2;
+margin-left:30px;
 `
 const Recomendation = ({tags}) => {
     const [videos,setVideos] = useState([])

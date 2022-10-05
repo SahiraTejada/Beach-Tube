@@ -1,20 +1,25 @@
 import { initializeApp } from "firebase/app";
 //import firebase from 'firebase';
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import 'firebase/compat/firestore';
 const firebaseConfig = {
-  apiKey: "AIzaSyALBiAnBtlf4lWOhzLZw0N46iICeZvAjgI",
-  authDomain: "video-12a64.firebaseapp.com",
-  projectId: "video-12a64",
-  storageBucket: "video-12a64.appspot.com",
-  messagingSenderId: "545611305674",
-  appId: "1:545611305674:web:74d0db1a2b595654605a33"
+  apiKey: process.env.REACT_APP_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROYECTID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId:process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID 
 };
 
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export const provider = new GoogleAuthProvider();
+//export const auth = getAuth();
+//export const provider = new GoogleAuthProvider();
+//export const storage = getStorage(app)
 //export const db = firebase.firestore();
 //export const storage = firebase.storage();
 export default app;
 
+//const db = firebaseConfig.firestore();
+//export default db;

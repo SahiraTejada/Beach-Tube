@@ -3,22 +3,23 @@ import {useState,useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import Comment from './Comment';
 import axios from 'axios';
-
+import UserDefault from '../imgs/user (2).png'
 const Container = styled.div`
 
 `;
 
-
+const Avatar = styled.img`
+ width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color:white;
+`
 const NewComment = styled.div`
 display:flex;
 align-items:center;
 gap:10px;
 `;
-const Avatar = styled.img`
-border-radius: 50%;
-width:45px;
-height:45px;
-`;
+
 const Input = styled.input`
 border:none;
 border-bottom:1px solid #373737;
@@ -53,7 +54,7 @@ const Comments = ({videoId}) => {
   return (
     <Container>
       <NewComment>
-        <Avatar src={currentUser.img} />
+         <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} />
         <Input placeholder="Add a comment..." />
       </NewComment>
       {comments.map(comment=>(

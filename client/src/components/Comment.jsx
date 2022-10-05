@@ -2,17 +2,14 @@ import styled from 'styled-components';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import {timeago} from './timeage_es';
+import UserDefault from '../imgs/user (2).png'
 
 const Container = styled.div`
 display:flex;
 gap:10px;
 margin 30px 0px;
 `;
-const Avatar = styled.img`
-border-radius: 50%;
-width:45px;
-height:45px;
-`;
+
 const Details = styled.div`
 display:flex;
 flex-direction:column;
@@ -34,6 +31,12 @@ const Text = styled.span`
 font-size:14px;
 
 `;
+const Avatar = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color:white;
+`;
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
 
@@ -47,7 +50,7 @@ const Comment = ({ comment }) => {
 
   return (
     <Container>
-      <Avatar src={channel.img} />
+      <Avatar src={channel.img ? (channel.img): (UserDefault)} />
       <Details>
         <Name>
           {channel.name} <Date>{timeago(comment.createdAt)}</Date>

@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import styled from 'styled-components';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Link ,useNavigate} from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import Upload from "./Upload";
 import Popover from '@mui/material/Popover';
 import Popper from '@mui/material/Popper';
+import Avatar from '@mui/material/Avatar';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import axios from 'axios';
+import { logout } from "../redux/userSlice";
+import Youtube from '../imgs/logo1.png';
+import MenuSharpIcon from '@mui/icons-material/MenuSharp';
+import UserDefault from '../imgs/user (2).png'
+
+
 
 const Container = styled.div`
 position:sticky;
@@ -16,7 +24,7 @@ top:0px;
 background-color: #202020;
 color: white;
 height:8.8vh;
- 
+
 `;
 
 const Wrapper = styled.div`
@@ -46,6 +54,11 @@ const Input = styled.input`
   border-right: none;
   font-size: 16px;
   color:white;
+`;
+
+const Img = styled.img`
+ width: 100px;
+
 `;
 
 const Button = styled.button`
@@ -93,12 +106,7 @@ const SearchIcon = styled.div`
 text-align: center;
 cursor:pointer;  
 `;
-const Avatar= styled.img`
-border-radius:50%;
-height:35px;
-width:35px;
-background-color: #aaaaaa;
-`;
+
 
 const NavIcons = styled.div`
 padding: 0px 10px;
@@ -130,30 +138,45 @@ padding: 0px 0px;
 
 `;
 
+const Logo = styled.div`
+display:flex;
+align-items:center;
+gap:5px;
 
+`;
+const Icons = styled.div`
+padding: 0px 20px;
+cursor:pointer;
 
+`;
 const NavBar = () => {
  
     const [open, setOpen] = useState(false);
+    const [sidebar, setSibebar] = useState(false);
     const navigate = useNavigate();
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const dispatch = useDispatch();
+  const [logo,setLogo] = useState(false)
+  
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
   const handleNavigate = () => {
+    
     navigate('/signin')
   }
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
-  
+  console.log(currentUser.name)
   return (
     <>
      <Container>
-      <Wrapper>
+      <Wrapper> 
+  
+    
         <Search>
           <Input 
           placeholder='Buscar'
@@ -167,16 +190,16 @@ const NavBar = () => {
           style={{padding:'7px', opacity: '0.8'}}/></SearchIcon>
         </Search>  
       
-     {currentUser ? (
+     {currentUser  ? (
             <User>
               <VideoCallSharpIcon onClick={() => setOpen(true)} />
-              <Avatar src={currentUser.img} onClick={handleClick}/>
+              <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} onClick={handleClick}/>
              
                <Popper id={id} open={opened} anchorEl={anchorEl} className='popper'>
      
        <Content>
        
-       <DetailsAccount > {currentUser.name}</DetailsAccount>
+       <DetailsAccount  > {currentUser.name}</DetailsAccount>
      
        <DetailsAccount style={{paddingTop:'7px'}}> {currentUser.email}</DetailsAccount>
    

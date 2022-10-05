@@ -2,7 +2,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {Menu,NavBar} from './components/index';
 import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
-import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext} from './AppContext.js'
+import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext,SignUpContext} from './AppContext.js'
 
 const Container = styled.div`
 display:flex;
@@ -22,15 +22,20 @@ function App() {
    <Container>
       <BrowserRouter>
       
-          <Routes> <Route
-                    path="/signin"
-                    element={ <SigninContext />}
-                  />
+          <Routes> 
           <Route path='/'>
             <Route index element={<RandomContext />}/>
             <Route path='trends' element={<TrendsContext/>}/>
             <Route path='subscriptions' element={<SubContext/>}/>
             <Route path='search' element={<SearchContext/>}/>
+            <Route
+                    path="/signin"
+                    element={ <SigninContext />}
+                  />
+                    <Route
+                    path="/signup"
+                    element={ <SignUpContext />}
+                  />
             <Route path="video">
               <Route path=':id' element={<VideoContext/>}>
               </Route>

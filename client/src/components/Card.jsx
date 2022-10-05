@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {timeago} from './timeage_es';
-import {fetchSuccess} from '../redux/videoSlice'
+import Avatar from '@mui/material/Avatar';
+import {fetchSuccess} from '../redux/videoSlice';
+import UserDefault from '../imgs/user (2).png'
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "240px"};
@@ -13,6 +15,7 @@ const Container = styled.div`
   margin: ${(props) => props.type === "sm" ? "0px":"15px"};
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;
+  
 `;
 
 const Image = styled.img`
@@ -29,13 +32,15 @@ float: ${(props) => props.type === "sm" && "right"};
   gap: 12px;
   flex: 1;
  
+ 
+ 
 `;
 
 const ChannelImage = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: #999;
+  background-color:white;
   display: ${(props) => props.type === "sm" && "none"};
 `;
 
@@ -71,10 +76,12 @@ const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
   const [title, setTitle] = useState("");
   const dispacth = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchChannel = async () => {
       const res = await axios.get(`/users/find/${video.userId}`);
+      
       setChannel(res.data);
     };
     fetchChannel();
@@ -83,17 +90,20 @@ const Card = ({ type, video }) => {
   
   return (
     
-      <Container type={type}  title = {video.title} >
+      <Container type={type}  title = {video.title}>
         <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
         <Image
           type={type}
           src={video.imgUrl}
         />
         <Details type={type}>
-          <div>
+          
+           <div>
           <ChannelImage
             type={type}
-            src={channel.img}
+            src={channel.img ? (channel.img): (UserDefault)}
+            sx={{ width: 35, height: 35 }}
+           style={{position:'static'}}
           /></div>
           <Texts>
             <Title >{video.title}</Title>

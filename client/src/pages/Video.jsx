@@ -17,16 +17,18 @@ import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { subscription } from "../redux/userSlice";
 import {timeago} from '../components/timeage_es';
 import Recomendation from "../components/Recomendation";
+import Avatar from '@mui/material/Avatar';
 
 const Container = styled.div`
-margin: 10px;
+margin: 20px 50px;
 display:flex;
+position:static;
 
 `;
 
 const Content = styled.div`
 margin-left:20px;
- flex: 4;
+ flex: 3.2;
   
 `;
 
@@ -117,6 +119,7 @@ const VideoFrame = styled.video`
   max-height: 720px;
   width: 100%;
   object-fit: cover;
+
 `;
 
 const Video = () => {
@@ -198,7 +201,7 @@ const Video = () => {
         <Hr/>
         <Channel>
           <ChannelInfo>
-						<Image src={channel.img}/>
+						<Avatar src={channel.img}/>
 					
 					<ChannelDetail>
 						<ChannelName>{channel.name}</ChannelName>

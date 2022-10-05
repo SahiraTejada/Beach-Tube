@@ -63,7 +63,7 @@ const Icons = styled.div`
 padding: 0px 20px;
 
 `;
-const Menu = () => {
+const Menu = ({ setSidebar }) => {
   const navigate = useNavigate();
   return (
  <Container>
@@ -73,21 +73,21 @@ const Menu = () => {
            <Link to='/'>
           <Img src={Youtube} alt='Youtube'/></Link>
         </Logo>
-        <Link to='/' style={{textDecoration:'none'}}>
-      <Item>
+       
+      <Item onClick={() =>navigate('/')}>
         <Icons><HomeIcon/></Icons>
        <Text> Principal</Text>
-      </Item></Link>
-      <Link to='trends' style={{textDecoration:'none'}}>
-      <Item>
+      </Item>
+     
+      <Item onClick={() =>navigate('/trends')}>
         <Icons><ExploreIcon/></Icons>
         <Text>Explorar</Text>
-      </Item></Link>
-       <Link to='subscriptions' style={{textDecoration:'none'}}>
-      <Item>
+      </Item>
+       
+      <Item onClick={() =>navigate('/subscriptions')}>
         <Icons><SubscriptionsIcon/></Icons>
         <Text>Suscripciones</Text>
-      </Item></Link>
+      </Item>
       <Hr/>
       <Item>
         <Icons><SlideshowSharpIcon /></Icons>

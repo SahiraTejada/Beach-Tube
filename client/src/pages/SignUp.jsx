@@ -1,15 +1,16 @@
 import axios from "axios";
+import app from "../firebase";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
-
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 //import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { async } from "@firebase/util";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-
+import userDefault from '../imgs/usuario.svg';
 import { useEffect } from "react";
 
 
@@ -79,16 +80,28 @@ const Text = styled.p`
 color:white;
 cursor:pointer;
 `
-
+const InputImg = styled.input`
+  border: 1px solid #aaaaaa;
+  color:white;
+  border-radius: 3px;
+  padding: 7px;
+  background-color: transparent;
+  
+`;
 
 const SignIn = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [imguser,setImgUser] = useState(undefined)
+  const [imgPerc,setImgPerc] = useState(undefined)
   const [isSignUp, setSignUp] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({});
+
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginStart());
@@ -136,42 +149,96 @@ const SignIn = () => {
         console.log("ero")
       });
   };*/
+ const handleChange = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
 
+
+   const uploadFile = (file, urlType) => {
+    const storage = getStorage(app);
+    const fileName = new Date().getTime() + file.name;
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       if(urlType === "img")  { setImgPerc(Math.round(progress)) 
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+            break;
+        }
+      }
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setInputs((prev) => {
+            return { ...prev, [urlType]: downloadURL };
+          });
+        });
+      }
+    );
+  };
+
+  
+
+  useEffect(() => {
+    imguser && uploadFile(imguser, "img");
+  }, [imguser]);
+
+  const handleUpload = async (e)=>{
+    e.preventDefault();
+  
+    const res = await axios.post("/auth/signup", {...inputs})
+    res.status===200 && navigate('/signin')
+  }
   
   return (
     <Container>
       <Wrapper>
         <Title>Sign in</Title>
         <SubTitle>to continue to LamaTube</SubTitle>
+       
+        <Title>or</Title>
         <Input
           placeholder="username"
-          onChange={(e) => setName(e.target.value)}
+          name="name"
+          onChange={handleChange}
         />
+        <Input placeholder="email" name="email" onChange={handleChange} />
         <Input
           type="password"
           placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          onChange={handleChange}
         />
-        <Button onClick={handleLogin}>Sign in</Button>
-        <Title>or</Title>
-        <Button //onClick={signInWithGoogle}
-        >Signin with Google</Button>
-        <Title>or</Title>
      
-        <Title>or</Title>
-        <Input
-          placeholder="username"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-        <Input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
         <Button onClick={handleSignUp}>Sign up</Button>
+
+        Image:
+        {imgPerc > 0 ? (
+          "Uploading:" + imgPerc + "%"
+        ) : (
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImgUser(e.target.files[0])}
+          />
+        )}
+        <Button onClick={handleUpload}>Upload</Button>
         
-        <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
+      
         
       </Wrapper>
       
