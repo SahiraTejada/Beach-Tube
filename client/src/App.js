@@ -1,8 +1,6 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import {Menu,NavBar} from './components/index';
-import {Home,Video,SignIn} from './pages/index';
 import styled from 'styled-components';
-import {VideoContext,RandomContext,TrendsContext,SubContext,SigninContext,SearchContext,SignUpContext} from './Pages.js'
+import {VideoPage,RandomPage,TrendsPage,SubPage,SigninPage,SearchPage,SignUpPage} from './Pages.js'
 
 const Container = styled.div`
 display:flex;
@@ -24,20 +22,20 @@ function App() {
       
           <Routes> 
           <Route path='/'>
-            <Route index element={<RandomContext />}/>
-            <Route path='trends' element={<TrendsContext/>}/>
-            <Route path='subscriptions' element={<SubContext/>}/>
-            <Route path='search' element={<SearchContext/>}/>
+            <Route index element={<RandomPage />}/>
+            <Route path='trends' element={<TrendsPage/>}/>
+            <Route path='subscriptions' element={<SubPage/>}/>
+            <Route path='search' element={<SearchPage/>}/>
             <Route
                     path="/signin"
-                    element={ <SigninContext />}
+                    element={ <SigninPage />}
                   />
                     <Route
                     path="/signup"
-                    element={ <SignUpContext />}
+                    element={ <SignUpPage />}
                   />
             <Route path="video">
-              <Route path=':id' element={<VideoContext/>}>
+              <Route path=':id' element={<VideoPage/>}>
               </Route>
             </Route>
           </Route>

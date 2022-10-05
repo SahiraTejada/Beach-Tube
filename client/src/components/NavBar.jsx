@@ -6,15 +6,10 @@ import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Link ,useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from 'react-redux';
 import Upload from "./Upload";
-import Popover from '@mui/material/Popover';
 import Popper from '@mui/material/Popper';
 import Avatar from '@mui/material/Avatar';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import axios from 'axios';
-import { logout } from "../features/userSlice";
-import Youtube from '../imgs/logo1.png';
-import MenuSharpIcon from '@mui/icons-material/MenuSharp';
-import UserDefault from '../imgs/user (2).png'
+import UserDefault from '../imgs/user.png'
 
 
 
@@ -151,23 +146,17 @@ cursor:pointer;
 `;
 const NavBar = () => {
  
-    const [open, setOpen] = useState(false);
-    const [sidebar, setSibebar] = useState(false);
-    const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
-  const [logo,setLogo] = useState(false)
   
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleNavigate = () => {
-    
-    navigate('/signin')
-  }
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
   console.log(currentUser.name)
@@ -175,43 +164,28 @@ const NavBar = () => {
     <>
      <Container>
       <Wrapper> 
-  
-    
         <Search>
-          <Input 
-          placeholder='Buscar'
-          onChange={(e) => setQ(e.target.value)}
-          ></Input>
-          <SearchIcon 
-          onClick={() =>navigate(`/search?q=${q}`) }
-          >
-          <SearchSharpIcon 
-
-          style={{padding:'7px', opacity: '0.8'}}/></SearchIcon>
+          <Input placeholder='Buscar' onChange={(e) => setQ(e.target.value)}>
+          </Input>
+          <SearchIcon onClick={() =>navigate(`/search?q=${q}`) }>
+            <SearchSharpIcon 
+          style={{padding:'7px', opacity: '0.8'}}/>
+          </SearchIcon>
         </Search>  
-      
-     {currentUser  ? (
+          {currentUser ? (
             <User>
               <VideoCallSharpIcon onClick={() => setOpen(true)} />
               <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} onClick={handleClick}/>
-             
                <Popper id={id} open={opened} anchorEl={anchorEl} className='popper'>
-     
-       <Content>
-       
-       <DetailsAccount  > {currentUser.name}</DetailsAccount>
-     
+        <Content>
+       <DetailsAccount>{currentUser.name}</DetailsAccount>
        <DetailsAccount style={{paddingTop:'7px'}}> {currentUser.email}</DetailsAccount>
-   
-       <Hr/>
-        
-        <div onClick={handleNavigate}>
+       <Hr/> 
+        <div onClick={()=> navigate('/signin')}>
        <Logout style={{ textDecoration: "none" }}>
       <LogoutRoundedIcon style={{paddingRight:'5px'}}/> Cerrar sesión</Logout> </div>
        </Content>
-       
-      </Popper>
-             
+              </Popper>
             </User>
           ) : (
             <Link to="signin" style={{ textDecoration: "none" }}>
@@ -222,10 +196,8 @@ const NavBar = () => {
             </Link>
           )}
       </Wrapper>
-     
     </Container>
     {open && <Upload setOpen={setOpen}/>}
-    
     </>
   )
 }

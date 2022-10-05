@@ -6,9 +6,6 @@ import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Youtube from '../imgs/logo1.png'
-import { useEffect } from "react";
-import { grey, red } from '@mui/material/colors';
-
 
 const Container = styled.div`
   display: flex;
@@ -35,10 +32,6 @@ const Title = styled.h1`
   padding:15px;
 `;
 
-const SubTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 300;
-`;
 
 const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.soft};
@@ -59,21 +52,6 @@ const Button = styled.button`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const More = styled.div`
-  display: flex;
-  margin-top: 10px;
-  font-size: 12px;
-  color: ${({ theme }) => theme.textSoft};
-`;
-
-const Links = styled.div`
-  margin-left: 50px;
-`;
-
-const Link = styled.span`
-  margin-left: 30px;
-`;
-
 const Text = styled.p`
 color:white;
 cursor:pointer;
@@ -81,16 +59,11 @@ cursor:pointer;
 
 const Img = styled.img`
  width: 200px;
- 
-
-
 `;
 const SignIn = () => {
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUp, setSignUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const handleLogin = async (e) => {
@@ -104,44 +77,6 @@ const SignIn = () => {
       dispatch(loginFailure());
     }
   };
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    dispatch(loginStart());
-    try {
-      const res = await axios.post("/auth/signup", { name,email, password });
-      dispatch(loginSuccess(res.data));
-      navigate("/")
-    } catch (err) {
-      dispatch(loginFailure());
-      console.error(err.response.data);
-    }
-  };
-
-  /*const signInWithGoogle = async () => {
-    dispatch(loginStart());
-    //signInWithPopup(auth, provider)
-      .then((result) => {
-       
-        axios
-          .post("http://localhost:8800/api/auth/google", {
-            
-            email: result.user.email,
-            img: result.user.photoURL,
-          })
-          .then((res) => {
-            console.log(res)
-            dispatch(loginSuccess(res.data));
-            navigate("/")
-          });
-      })
-      .catch((error) => {
-        dispatch(loginFailure());
-        console.log("ero")
-      });
-  };*/
-const primary = red[500]; // #f44336
-  
   return (
     <Container>
       <Wrapper>

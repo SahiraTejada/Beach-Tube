@@ -2,14 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
-import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import ReplyIcon from '@mui/icons-material/Reply';
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comments from "../components/Comments";
-import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -18,6 +14,7 @@ import { subscription } from "../features/userSlice";
 import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
 import Avatar from '@mui/material/Avatar';
+import UserDefault from '../imgs/user.png'
 
 const Container = styled.div`
 margin: 20px 50px;
@@ -201,7 +198,7 @@ const Video = () => {
         <Hr/>
         <Channel>
           <ChannelInfo>
-						<Avatar src={channel.img}/>
+						<Avatar src={channel.img ? (channel.img): (UserDefault)}/>
 					
 					<ChannelDetail>
 						<ChannelName>{channel.name}</ChannelName>

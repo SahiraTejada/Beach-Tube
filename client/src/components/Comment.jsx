@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import {timeago} from '../timeage_es';
-import UserDefault from '../imgs/user (2).png'
+import UserDefault from '../imgs/user.png'
 
 const Container = styled.div`
 display:flex;

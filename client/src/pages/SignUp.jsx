@@ -31,12 +31,6 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
 `;
-
-const SubTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 300;
-`;
-
 const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.soft};
   border-radius: 3px;
@@ -63,27 +57,6 @@ const More = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Links = styled.div`
-  margin-left: 50px;
-`;
-
-const Link = styled.span`
-  margin-left: 30px;
-`;
-
-const Text = styled.p`
-color:white;
-cursor:pointer;
-`
-const InputImg = styled.input`
-  border: 1px solid #aaaaaa;
-  color:white;
-  border-radius: 3px;
-  padding: 7px;
-  background-color: transparent;
-  
-`;
-
 const SignIn = () => {
 
   const [name, setName] = useState("");
@@ -91,24 +64,11 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [imguser,setImgUser] = useState(undefined)
   const [imgPerc,setImgPerc] = useState(undefined)
-  const [isSignUp, setSignUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
   
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    dispatch(loginStart());
-    try {
-      const res = await axios.post("/auth/signin", { name, password });
-      dispatch(loginSuccess(res.data));
-      navigate("/")
-    } catch (err) {
-      dispatch(loginFailure());
-    }
-  };
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     dispatch(loginStart());
@@ -122,28 +82,6 @@ const SignIn = () => {
     }
   };
 
-  /*const signInWithGoogle = async () => {
-    dispatch(loginStart());
-    //signInWithPopup(auth, provider)
-      .then((result) => {
-       
-        axios
-          .post("http://localhost:8800/api/auth/google", {
-            
-            email: result.user.email,
-            img: result.user.photoURL,
-          })
-          .then((res) => {
-            console.log(res)
-            dispatch(loginSuccess(res.data));
-            navigate("/")
-          });
-      })
-      .catch((error) => {
-        dispatch(loginFailure());
-        console.log("ero")
-      });
-  };*/
  const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };

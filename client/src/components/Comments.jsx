@@ -3,7 +3,7 @@ import {useState,useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import Comment from './Comment';
 import axios from 'axios';
-import UserDefault from '../imgs/user (2).png'
+import UserDefault from '../imgs/user.png'
 const Container = styled.div`
 
 `;

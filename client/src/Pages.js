@@ -1,12 +1,9 @@
 import React,{useState} from 'react'
-import {Menu,NavBar} from './components/index';
+import {Menu,NavBar,Logo} from './components/index';
 import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
-import {Container,Wrapper} from './appStyles.js';
-import Youtube from './imgs/logo1.png';
-import MenuSharpIcon from '@mui/icons-material/MenuSharp';
-import { Link } from 'react-router-dom';
-import Logo from './components/Logo';
+import {Wrapper} from './appStyles.js';
+
 const Page = styled.div`
 background-color: #181818;
 color:white;
@@ -31,98 +28,106 @@ z-index:10000;
 `
 ;
 const LogoBox = styled.div`
-
 left:0;
 top:0;
 `
 const NavContainer = styled.div`
-
-
-
-  
-  
-
 `
-export const RandomContext = () => {
+export const RandomPage = () => {
  
   return (
-   <>
-        <Menu/>
-      <Main>
-     
-        <NavBar/>
-        <Wrapper>
-       <Home type='random'/></Wrapper></Main>
+    <>
+      <Menu/>
+        <Main>
+          <NavBar/>
+          <Wrapper>
+        <Home type='random'/>
+        </Wrapper>
+          </Main>
    </>
   )
 }
 
-export const VideoContext = () => {
+export const VideoPage = () => {
   const [sidebar, setSibebar] = useState(false);
   return (
     <>
-    {sidebar && <Menu setSidebar={setSibebar}/>}
-      <VideoMain>
-        
-        <LogoContainer><LogoBox>
-       <Logo/></LogoBox></LogoContainer>
-      <NavContainer>
-      
-        <NavBar/></NavContainer>
-        <Wrapper>
-       <Video/></Wrapper></VideoMain>
+      {sidebar && <Menu setSidebar={setSibebar}/>}
+        <VideoMain>
+          <LogoContainer>
+            <LogoBox>
+              <Logo/>
+            </LogoBox>
+          </LogoContainer>
+            <NavContainer>
+            <NavBar/>
+          </NavContainer>
+          <Wrapper>
+            <Video/>
+          </Wrapper>
+        </VideoMain>
     </>
   )
 }
 
 
 
-export const SigninContext = () => {
+export const SigninPage = () => {
   return (
-    <Page><SignIn/></Page>
+      <Page>
+        <SignIn/>
+      </Page>
   )
 }
 
-export const SubContext = () => {
+export const SubPage = () => {
   return (
     <>
-        <Menu/>
-      <Main>
-        <NavBar/>
-        <Wrapper>
-       <Home type='sub'/></Wrapper></Main>
+      <Menu/>
+        <Main>
+          <NavBar/>
+          <Wrapper>
+            <Home type='sub'/>
+          </Wrapper>
+        </Main>
     </>
   )
 }
 
-export const TrendsContext = () =>{
+export const TrendsPage = () =>{
 return (
      <>
         <Menu/>
-      <Main>
-        <NavBar/>
-        <Wrapper>
-       <Home type='trend'/></Wrapper></Main>
+          <Main>
+            <NavBar/>
+            <Wrapper>
+              <Home type='trend'/>
+            </Wrapper>
+          </Main>
     </>
   )
 }
 
 
-export const SearchContext = () =>{
+export const SearchPage = () =>{
 return (
      <>
         <Menu/>
-      <Main>
-        <NavBar/>
-        <Wrapper>
-       <Search/></Wrapper></Main>
+          <Main>
+            <NavBar/>
+            <Wrapper>
+              <Search/>
+            </Wrapper>
+          </Main>
     </>
   )
 }
 
 
-export const SignUpContext = () => {
+export const SignUpPage = () => {
   return (
-    <Page><SignUp/></Page>
+    <Page>
+      <SignUp/>
+    </Page>
   )
 }

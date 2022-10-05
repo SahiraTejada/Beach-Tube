@@ -1,12 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import {timeago} from '../timeage_es';
-import Avatar from '@mui/material/Avatar';
-import {fetchSuccess} from '../features/videoSlice';
-import UserDefault from '../imgs/user (2).png'
+import UserDefault from '../imgs/user.png'
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "240px"};
@@ -75,14 +72,11 @@ const Info = styled.div`
 
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
-  const [title, setTitle] = useState("");
-  const dispacth = useDispatch();
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchChannel = async () => {
       const res = await axios.get(`/users/find/${video.userId}`);
-      
       setChannel(res.data);
     };
     fetchChannel();
@@ -90,28 +84,28 @@ const Card = ({ type, video }) => {
   
   
   return (
-    
       <Container type={type}  title = {video.title}>
-        <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
-        <Image
+          <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
+          <Image
           type={type}
           src={video.imgUrl}
-        />
-        <Details type={type}>
+          />
+          <Details type={type}>
           
-           <div>
-          <ChannelImage
-            type={type}
-            src={channel.img ? (channel.img): (UserDefault)}
-            sx={{ width: 35, height: 35 }}
-           style={{position:'static'}}
-          /></div>
+          <div>
+            <ChannelImage
+              type={type}
+              src={channel.img ? (channel.img): (UserDefault)}
+              style={{position:'static'}}
+            />
+            </div>
           <Texts>
             <Title >{video.title}</Title>
             <ChannelName>{channel.name}</ChannelName>
             <Info>{video.views} vistas • {timeago(video.createdAt)}</Info>
           </Texts>
-        </Details>    </Link>
+        </Details>
+        </Link>
       </Container>
 
   );

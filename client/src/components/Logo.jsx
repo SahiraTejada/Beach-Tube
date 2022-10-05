@@ -30,10 +30,13 @@ cursor:pointer;
 const Logo = () => {
   return (
     <LogoFrame>
-          <Icons><MenuSharpIcon/></Icons>
-           <Link to='/'>
-          <Img src={Youtube} alt='Youtube'/></Link>
-        </LogoFrame>
+        <Icons>
+            <MenuSharpIcon/>
+        </Icons>
+        <Link to='/'>
+          <Img src={Youtube} alt='Youtube'/>
+        </Link>
+    </LogoFrame>
   )
 }
 

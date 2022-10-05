@@ -71,7 +71,8 @@ const Menu = ({ setSidebar }) => {
         <Logo>
           <Icons><MenuSharpIcon /></Icons>
            <Link to='/'>
-          <Img src={Youtube} alt='Youtube'/></Link>
+          <Img src={Youtube} alt='Youtube'/>
+            </Link>
         </Logo>
        
       <Item onClick={() =>navigate('/')}>
@@ -88,7 +89,9 @@ const Menu = ({ setSidebar }) => {
         <Icons><SubscriptionsIcon/></Icons>
         <Text>Suscripciones</Text>
       </Item>
+
       <Hr/>
+      
       <Item>
         <Icons><SlideshowSharpIcon /></Icons>
         <Text>Tus videos</Text>
