@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
-import TextField from '@mui/material/TextField';
 import Youtube from '../imgs/logo1.png'
 
 const Container = styled.div`
@@ -34,12 +33,12 @@ const Title = styled.h1`
 
 
 const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.soft};
+  border: 1px solid #373737;
   border-radius: 3px;
   padding: 10px;
   background-color: transparent;
   width: 100%;
-  color: ${({ theme }) => theme.text};
+  color: white;
 `;
 
 const Button = styled.button`
@@ -48,8 +47,8 @@ const Button = styled.button`
   padding: 10px 20px;
   font-weight: 500;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.soft};
-  color: ${({ theme }) => theme.textSoft};
+  background-color: #373737;
+  color: #aaaaaa;
 `;
 
 const Text = styled.p`
@@ -83,9 +82,9 @@ const SignIn = () => {
          <Img src={Youtube} alt='Youtube'/>
         <Title>Sign in</Title>
        
-        <TextField id="outlined-basic" label="Email" type='email' color="secondary" variant="outlined" onChange={(e) => setEmail(e.target.value)}/>
+        <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/>
 
-         <TextField id="outlined-basic" label="Contraseña" color="secondary" type="password" variant="outlined"  onChange={(e) => setPassword(e.target.value)}/>
+         <Input placeholder="Contraseña" type="password"  onChange={(e) => setPassword(e.target.value)}/>
         <Button onClick={handleLogin}>Sign in</Button>
         <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
         

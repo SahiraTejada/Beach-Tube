@@ -13,13 +13,19 @@ import { dislike, fetchSuccess, like } from "../features/videoSlice";
 import { subscription } from "../features/userSlice";
 import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
-import Avatar from '@mui/material/Avatar';
+
 import UserDefault from '../imgs/user.png'
 
 const Container = styled.div`
 margin: 20px 50px;
 display:flex;
-position:static;
+`;
+
+const Avatar = styled.img`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color:white;
 
 `;
 
@@ -76,11 +82,7 @@ const ChannelInfo = styled.div`
 display:flex;
 gap:20px;
 `;
-const Image = styled.img`
-border-radius: 50%;
-width:45px;
-height:45px;
-`;
+
 const ChannelDetail = styled.div`
   display: flex;
   flex-direction: column;

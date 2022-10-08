@@ -21,6 +21,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index:1;
 `;
 
 const Wrapper = styled.div`
@@ -144,7 +145,7 @@ const Upload = ({ setOpen }) => {
     <Container>
       <Wrapper>
         <Close onClick={() => setOpen(false)}>X</Close>
-        <Title>Upload a New Video</Title>
+        <Title>Subir un video</Title>
         <Label>Video:</Label>
         {videoPerc > 0 ? (
           "Uploading:" + videoPerc

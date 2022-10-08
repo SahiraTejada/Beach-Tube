@@ -1,13 +1,12 @@
-import React, { useState , useEffect} from "react";
+import React, { useState} from "react";
 import styled from 'styled-components';
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import VideoCallSharpIcon from '@mui/icons-material/VideoCallSharp';
 import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
 import { Link ,useNavigate} from "react-router-dom";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import Upload from "./Upload";
 import Popper from '@mui/material/Popper';
-import Avatar from '@mui/material/Avatar';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import UserDefault from '../imgs/user.png'
 
@@ -51,10 +50,7 @@ const Input = styled.input`
   color:white;
 `;
 
-const Img = styled.img`
- width: 100px;
 
-`;
 
 const Button = styled.button`
  padding: 5px 15px;
@@ -102,12 +98,14 @@ text-align: center;
 cursor:pointer;  
 `;
 
-
-const NavIcons = styled.div`
-padding: 0px 10px;
-cursor:pointer;
+const Avatar = styled.img`
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  background-color:white;
 
 `;
+
 
 const User = styled.div`
 display:flex;
@@ -133,17 +131,7 @@ padding: 0px 0px;
 
 `;
 
-const Logo = styled.div`
-display:flex;
-align-items:center;
-gap:5px;
 
-`;
-const Icons = styled.div`
-padding: 0px 20px;
-cursor:pointer;
-
-`;
 const NavBar = () => {
  
   const [open, setOpen] = useState(false);
@@ -151,7 +139,7 @@ const NavBar = () => {
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch = useDispatch();
+  
   
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);

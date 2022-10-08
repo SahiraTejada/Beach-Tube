@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 const LogoFrame = styled.div`
 
- background-color: #202020;
+
  height:10px;
-width: 50px;
+
 color: white;
 display:flex;
 position:static;

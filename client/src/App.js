@@ -4,17 +4,8 @@ import {VideoPage,RandomPage,TrendsPage,SubPage,SigninPage,SearchPage,SignUpPage
 
 const Container = styled.div`
 display:flex;
-
 `;
 
-const Main = styled.div`
-flex:7;
-background-color: #181818;
-color:white;
-`
-const Wrapper = styled.div`
-padding: 0px 7px;
-`;
 function App() {
   return (
    <Container>
