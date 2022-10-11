@@ -147,7 +147,7 @@ const NavBar = () => {
 
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
-  console.log(currentUser.name)
+  
   return (
     <>
      <Container>
