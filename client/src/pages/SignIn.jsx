@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
+import { auth, provider } from "../firebase";
+
 import { useNavigate } from "react-router-dom";
 import BeachTube from '../imgs/logo1.png'
+import { signInWithPopup } from "firebase/auth"
 
 const Container = styled.div`
   display: flex;
@@ -79,22 +82,52 @@ const SignIn = () => {
       dispatch(loginFailure());
     }
   };
+
+  const signinWithGoogle = async ()=>{
+    dispatch(loginStart());
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        axios
+        .post("/auth/google", {
+          name: result.user.displayName,
+          email: result.user.email,
+          img: result.user.photoURL,
+        })
+        .then((res)=>{
+        dispatch(loginSuccess(res.data));
+      });
+    })
+    .catch((loginFailure)=>{});
+      dispatch(loginFailure());
+  }
+  
   return (
     <Container>
       <Wrapper>
          <Img src={BeachTube} alt='BeachTube'/>
         <Title>Sign in</Title>
-       
-        <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/>
+       <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/>
 
          <Input placeholder="Contraseña" type="password"  onChange={(e) => setPassword(e.target.value)}/>
         <Button onClick={handleLogin}>Sign in</Button>
+        <Title> O </Title> 
+
+        
+        <Button onClick={signinWithGoogle}>Sign in with Google</Button>
+
         <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
+
+        
+
+        
         
       </Wrapper>
       
     </Container>
   );
 };
+
+
+
 
 export default SignIn;
