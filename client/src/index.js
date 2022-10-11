@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {store,persistor} from './app/store.js';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import './fonts/GothicA1-SemiBold.ttf';
+import './fonts/GothicA1-Bold.ttf';
+import './fonts/Roboto-Regular.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

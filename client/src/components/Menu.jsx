@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import Youtube from '../imgs/logo1.png';
+import BeachTube from '../imgs/logo1.png';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -9,46 +9,48 @@ import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import {Link,useNavigate} from 'react-router-dom';
 
-
 const Container = styled.div`
  flex:1.5;
- background-color: #202020;
+ background-color: #8CCCC3;
  height:100vh;
  width: 300px;
- color: white;
+ color: #444444;
  position:sticky;
  top:0px;
 `;
 
 const Wrapper= styled.div`
-padding: 18px 0px;
+padding: 12px 0px;
 `;
 const Logo = styled.div`
 display:flex;
 align-items:center;
-gap:5px;
+gap: 5px;
 margin-bottom: 15px;
 
 `;
 
 const Img = styled.img`
- width: 100px;
+ width: 200px;
 `;
 
 const Item = styled.div`
-color:white;
+color:#44444;
 display:flex;
 align-items:center;
 padding: 13px 0px;
+font-family: GothicA1-SemiBold;
 cursor:pointer;
  width: 100%;
  &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      font-weight:bold;
+      background-color: #54BAB9;
+      color:#44444;
+      font-family: GothicA1-Bold;
+      box-shadow: 0px 6px 8px rgba(25, 50, 47, 0.08),0px 3px 4px rgba(18, 71, 52, 0.02), 0px 1px 16px rgba(18, 71, 52, 0.03);
   }
 `;
 const Text = styled.p`
-font-size: 0.9rem;
+font-size: 1.3rem;
 cursor:pointer;
 
 
@@ -69,9 +71,9 @@ const Menu = ({ setSidebar }) => {
  <Container>
       <Wrapper>
         <Logo>
-          <Icons><MenuSharpIcon /></Icons>
+          <Icons></Icons>
            <Link to='/'>
-          <Img src={Youtube} alt='Youtube'/>
+          <Img src={BeachTube} alt='BeachTube'/>
             </Link>
         </Logo>
        

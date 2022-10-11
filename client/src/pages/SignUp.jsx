@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import BeachTube from '../imgs/logo1.png'
 
 const Container = styled.div`
   display: flex;
@@ -14,20 +14,23 @@ const Container = styled.div`
   justify-content: center;
   height: calc(100vh - 56px);
   color: white;
+
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #202020;
-  border: 1px solid #373737;
+  background-color: #8CCCC3;
+  border-radius :10px;
   padding: 20px 50px;
   gap: 10px;
+  color: black;
 `;
 
 const Title = styled.h1`
   font-size: 24px;
+  padding: 15px;
 `;
 const Input = styled.input`
   border: 1px solid #373737;
@@ -35,7 +38,7 @@ const Input = styled.input`
   padding: 10px;
   background-color: transparent;
   width: 100%;
-  color: white;
+  color: black;
 `;
 
 const Button = styled.button`
@@ -44,10 +47,14 @@ const Button = styled.button`
   padding: 10px 20px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #373737;
-  color: #aaaaaa;
+  background-color: #54BAB9;
+  color: black;
+  font-family: GothicA1-Bold;
 `;
 
+const Img = styled.img`
+ width: 200px;
+`;
 
 
 const SignIn = () => {
@@ -118,24 +125,25 @@ const SignIn = () => {
   return (
     <Container>
       <Wrapper>
+        <Img src={BeachTube} alt='BeachTube'/>
         <Title>Sign Up</Title>
        
        
      
         <Input
-          placeholder="username"
+          placeholder="Usuario"
           name="name"
           onChange={handleChange}
         />
-        <Input placeholder="email" name="email" onChange={handleChange} />
+        <Input placeholder="Correo" name="email" onChange={handleChange} />
         <Input
           type="password"
-          placeholder="password"
+          placeholder="Contraseña"
           name="password"
           onChange={handleChange}
         />
      
-        Image:
+        <h3>Foto de perfil:</h3>
         {imgPerc > 0 ? (
           "Uploading:" + imgPerc + "%"
         ) : (

@@ -24,7 +24,7 @@ font-weight:500;
 const Date = styled.span`
 font-size:12px;
 font-ewight:400;
-color:#aaaaaa;
+color: black;
 margin-left:5px;
 `;
 const Text = styled.span`

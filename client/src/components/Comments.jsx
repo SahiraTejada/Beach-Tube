@@ -27,17 +27,18 @@ border-bottom:1px solid #373737;
 background-color:transparent;
 outline:none;
 padding:5px;
-color:white;
+
 width:100%;
 font-size:14px;
 font-weight: 400;
 line-height: 20px;
 margin:5px;
+color: black;
 `;
 
 const Button= styled.button`
-background-color:${(props) => props.type === "cancel" ? "transparent":" rgba(255, 255, 255, 0.1)"};
-color:#aaa;
+background-color:${(props) => props.type === "cancel" ? "transparent":" #9ED2C6"};
+
  text-transform:uppercase;
  border:none;
  border-radius:2px;
@@ -46,7 +47,7 @@ color:#aaa;
  cursor:pointer;
  font-weight:700;
  letter-spacing: 0.5px;
-
+color: black;
 `
 const Buttons = styled.div`
 display:flex;

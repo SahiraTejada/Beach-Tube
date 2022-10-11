@@ -9,7 +9,7 @@ import Upload from "./Upload";
 import Popper from '@mui/material/Popper';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import UserDefault from '../imgs/user.png'
-
+import BeachTube from '../imgs/logo1.png';
 
 
 const Container = styled.div`
@@ -155,10 +155,29 @@ const NavBar = () => {
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
   
+  const Logo = styled.div`
+    display:flex;
+
+
+
+  `;
+  const Icons = styled.div`
+    padding: 0px 13.5px;
+  `;
+  const Img = styled.img`
+  width: 200px;
+  `;
+  
   return (
     <>
      <Container>
       <Wrapper> 
+      <Logo>
+          <Icons></Icons>
+           <Link to='/'>
+          <Img src={BeachTube} alt='BeachTube'/>
+            </Link>
+      </Logo>
         <Search>
           <Input placeholder='Buscar' onChange={(e) => setQ(e.target.value)}>
           </Input>

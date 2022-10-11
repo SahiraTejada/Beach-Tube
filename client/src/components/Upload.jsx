@@ -22,18 +22,22 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   z-index:1;
+  font-family: GothicA1-Bold;
+  
 `;
 
 const Wrapper = styled.div`
   width: 600px;
   height: 500px;
-  background-color: #202020;
-  color:white;
+  background-color: #8CCCC3;
+  color:black;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: relative;
+  border-radius :10px;
+  box-shadow: 0px 6px 8px rgba(25, 50, 47, 0.08),0px 3px 4px rgba(18, 71, 52, 0.02), 0px 1px 16px rgba(18, 71, 52, 0.03);
 `;
 const Close = styled.div`
   position: absolute;
@@ -41,33 +45,34 @@ const Close = styled.div`
   right: 10px;
   cursor: pointer;
 `;
-const Title = styled.h1`
+const Title = styled.p`
   text-align: center;
+  font-size: 2rem;
 `;
 
 const Input = styled.input`
-  border: 1px solid #aaaaaa;
-  color:white;
+  border: 1px solid black;
   border-radius: 3px;
-  padding: 7px;
+  padding: 4px;
   background-color: transparent;
   z-index: 999;
 `;
 const Desc = styled.textarea`
-  border: 1px solid #aaaaaa;
-  color:white;
+  border: 1px solid black;
+  color:black;
   border-radius: 3px;
   padding: 7px;
   background-color: transparent;
 `;
 const Button = styled.button`
   border-radius: 3px;
-  border: none;
+  border: 1px solid black;
   padding: 7px 20px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #aaaaaa;
+  background-color: #54BAB9;
   color: black;
+  font-family: GothicA1-Bold;
 `;
 const Label = styled.label`
   font-size: 14px;
@@ -158,19 +163,19 @@ const Upload = ({ setOpen }) => {
         )}
         <Input
           type="text"
-          placeholder="Title"
+          placeholder="Título"
           name="title"
           onChange={handleChange}
         />
         <Desc
-          placeholder="Description"
+          placeholder="Descripción"
           name="desc"
           rows={8}
           onChange={handleChange}
         />
         <Input
           type="text"
-          placeholder="Separate the tags with commas."
+          placeholder="Separa los tags usando comas"
           onChance={handleTags}
         />
         <Label>Image:</Label>

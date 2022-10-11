@@ -1,35 +1,31 @@
 import React,{useState} from 'react'
-import {Menu,NavBar,Logo} from './components/index';
+import {Menu,NavBar,Logo,NavBarVideo} from './components/index';
 import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
 import {Wrapper} from './appStyles.js';
 
 const Page = styled.div`
-background-color: #181818;
-color:white;
+background-color:#A39980;
 width:100%;
 height : 100vh;
 `
  const Main = styled.div`
 flex:7;
-background-color: #181818;
-color:white;
+background:linear-gradient(#E9DAC1,transparent);
+background-color:#D4C6AF  ;
+
 `
 const VideoMain = styled.div`
-background-color: #181818;
-color:white;
+background:linear-gradient(#E9DAC1,transparent);
+background-color: #AFA491  ;
 width:100%;
 position: relative;
      
 `
-const LogoContainer  = styled.div`
-position: absolute;
-z-index:10000;
-`
-;
+
 const LogoBox = styled.div`
-left:0;
-top:0;
+
+
 `
 const NavContainer = styled.div`
 `
@@ -49,18 +45,11 @@ export const RandomPage = () => {
 }
 
 export const VideoPage = () => {
-  const [sidebar, setSibebar] = useState(false);
   return (
     <>
-      {sidebar && <Menu setSidebar={setSibebar}/>}
         <VideoMain>
-          <LogoContainer>
-            <LogoBox>
-              <Logo/>
-            </LogoBox>
-          </LogoContainer>
-            <NavContainer>
-            <NavBar/>
+         <NavContainer>
+            <NavBarVideo/>
           </NavContainer>
           <Wrapper>
             <Video/>
