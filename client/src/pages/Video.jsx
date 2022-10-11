@@ -160,14 +160,13 @@ const Video = () => {
     dispatch(subscription(channel._id));
   };
 
-  //TODO: DELETE VIDEO FUNCTIONALITY
 
   return (
     <Container>
      <Content>
       
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} controls />
+          <VideoFrame src={currentVideo.videoUrl} autoPlay controls />
         </VideoWrapper>
         <Title >{currentVideo.title}</Title>
         <Details>

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import {timeago} from '../timeage_es';
-import UserDefault from '../imgs/user.png'
+import UserDefault from '../imgs/user.png';
+
 
 const Container = styled.div`
 display:flex;
@@ -39,25 +40,34 @@ const Avatar = styled.img`
 `;
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
+ const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchComment = async () => {
+      try{
       const res = await axios.get(`/users/find/${comment.userId}`);
-      setChannel(res.data)
-    };
+      setChannel(res.data);
+      }catch(err){
+        console.err(err.response.data); 
+      }
+    }
+
     fetchComment();
   }, [comment.userId]);
 
   return (
+   
     <Container>
       <Avatar src={channel.img ? (channel.img): (UserDefault)} />
+     
       <Details>
         <Name>
-          {channel.name} <Date>{timeago(comment.createdAt)}</Date>
-        </Name>
+          {channel.name} <Date>{timeago(comment.createdAt)}</Date></Name> 
+       
         <Text>{comment.desc}</Text>
       </Details>
     </Container>
+
   );
 };
 export default Comment

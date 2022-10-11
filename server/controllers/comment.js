@@ -1,13 +1,13 @@
 import { createError } from '../error.js';
 import Comment from '../models/Comment.js';
 import Video from '../models/Video.js';
+import jwt from "jsonwebtoken";
 
 export const addComment = async (req,res,next)=>{
-    const newComment = new Comment({...req.body,userId:req.user.id})
+    const newComment = new Comment({videoId:req.body.videoId, desc: req.body.desc,userId:req.body.userId})
     try{
-        const saveComment = await newComment.save()
+      const saveComment = await newComment.save()
         res.status(200).send(saveComment)
-
     }catch(err){
         next(err)
     }

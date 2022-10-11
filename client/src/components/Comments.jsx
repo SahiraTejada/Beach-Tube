@@ -52,49 +52,56 @@ const Buttons = styled.div`
 display:flex;
 float:right;
 margin-top:5px;
-
-
 `;
 const Comments = ({videoId}) => {
 
   const { currentUser } = useSelector((state) => state.user);
-  const { currentVideo } = useSelector((state) => state.video);
   const [comments, setComments] = useState([]);
   const [show, setShow] = useState(false);
   const [desc, setDesc] = useState("");
-  const [newComment, setNewComment] = useState({});
-      const [CommentLists, setCommentLists] = useState([])
-  const path = useLocation().pathname.split("/")[2];
+  const [userId, setUserId] = useState({});
+  const [inputs, setInputs] = useState({});
+ 
+
+
+
+
+
   useEffect(() => {
+   
     const fetchComments = async () => {
       try {
         const res = await axios.get(`/comments/${videoId}`);
+        const UseRes = await axios.get(`/users/find/${currentUser._id}`);
+        setUserId(UseRes.data);
         setComments(res.data);
-      } catch (err) {}
+      } catch (err) {
+         console.err(err.response.data); 
+      }
     };
-    fetchComments();
-  }, [videoId]);
     
+    fetchComments();
+  }, [videoId,currentUser._id]);
+  
 
-const handleComment = async ()=>{
- 
+const handleComment = async (e)=>{
+
    try{
-      
-        const res = await axios.post(`/comments/${videoId}`,{desc,videoId});
-        setComments(res.data);
-   }catch(err){
-    console.log('vnjfibv8978776');
-   }
+        const res = await axios.post(`/comments/`,{desc,videoId,userId});
+        setInputs(res.data);
+        
+
+   }catch(err){}
  
 
 }
-  //TODO: ADD NEW COMMENT FUNCTIONALITY
-console.log(videoId);
+
   return (
     <Container>
       <NewComment>
          <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} />
-        <Input onClick={()=> setShow(true)} onChange={(e) => setDesc(e.target.value)}
+      
+        <Input onClick={()=> setShow(true)} onChange={(e) => setDesc(e.target.value)} 
         placeholder="Add a comment..." />
        
       </NewComment> {

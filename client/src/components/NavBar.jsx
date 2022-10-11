@@ -155,7 +155,7 @@ const NavBar = () => {
         <Search>
           <Input placeholder='Buscar' onChange={(e) => setQ(e.target.value)}>
           </Input>
-          <SearchIcon onClick={() =>navigate(`/search?q=${q}`) }>
+          <SearchIcon onClick={() =>navigate(`/search?q=${q}`)}>
             <SearchSharpIcon 
           style={{padding:'7px', opacity: '0.8'}}/>
           </SearchIcon>

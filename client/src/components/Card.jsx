@@ -72,6 +72,7 @@ const Info = styled.div`
 
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
+  const [view, setView] = useState();
 
 
   useEffect(() => {
@@ -82,9 +83,13 @@ const Card = ({ type, video }) => {
     fetchChannel();
   }, [video.userId]);
   
+  const handleviews = async () =>{
+    const Viewres = await axios.put(`/videos/view/${video._id}`);
+    setView(Viewres.data);
+  }
   
   return (
-      <Container type={type}  title = {video.title}>
+      <Container type={type}  title = {video.title} onClick={handleviews}>
           <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
           <Image
           type={type}
