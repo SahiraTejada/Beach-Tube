@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Youtube from '../imgs/logo1.png';
+import BeachTube from '../imgs/logo1.png';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ margin-top:12px;
 `;
 
 const Img = styled.img`
- width: 100px;
+  width: 150px;
 
 
 `;
@@ -30,11 +30,8 @@ cursor:pointer;
 const Logo = () => {
   return (
     <LogoFrame>
-        <Icons>
-            <MenuSharpIcon/>
-        </Icons>
         <Link to='/'>
-          <Img src={Youtube} alt='Youtube'/>
+          <Img src={BeachTube} alt='Youtube'/>
         </Link>
     </LogoFrame>
   )

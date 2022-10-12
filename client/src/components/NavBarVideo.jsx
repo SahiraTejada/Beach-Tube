@@ -9,14 +9,14 @@ import Upload from "./Upload";
 import Popper from '@mui/material/Popper';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import UserDefault from '../imgs/user.png'
-
+import BeachTube from '../imgs/logo1.png';
 
 
 const Container = styled.div`
 position:sticky;
 top:0px;
 background-color: #8CCCC3;
-color: #303030;
+color: white;
 height:8.8vh;
 `;
 
@@ -34,7 +34,7 @@ display: flex;
   flex-grow: 1;
   justify-content: center;
   padding: 20px 0px;
-  padding-top: 10px;
+  padding-top: 20px;
 `;
 
 const Input = styled.input`
@@ -102,8 +102,6 @@ const SearchIcon = styled.div`
 text-align: center;
 cursor:pointer;  
 box-shadow: 0px 6px 8px rgba(25, 50, 47, 0.08),0px 3px 4px rgba(18, 71, 52, 0.02), 0px 1px 16px rgba(18, 71, 52, 0.03);
-color:white
-
 `;
 
 const Avatar = styled.img`
@@ -120,7 +118,7 @@ display:flex;
 align-items:center;
 gap:12px;
 cursor: pointer;
-padding-bottom:13px;
+
 `;
 
 
@@ -157,14 +155,33 @@ const NavBar = () => {
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
   
+  const Logo = styled.div`
+    display:flex;
+
+
+
+  `;
+  const Icons = styled.div`
+    padding: 0px 13.5px;
+  `;
+  const Img = styled.img`
+  width: 200px;
+  `;
+  
   return (
     <>
      <Container>
       <Wrapper> 
+      <Logo>
+          <Icons></Icons>
+           <Link to='/'>
+          <Img src={BeachTube} alt='BeachTube'/>
+            </Link>
+      </Logo>
         <Search>
           <Input placeholder='Buscar' onChange={(e) => setQ(e.target.value)}>
           </Input>
-          <SearchIcon onClick={() =>navigate(`/search?q=${q}`)}>
+          <SearchIcon onClick={() =>navigate(`/search?q=${q}`) }>
             <SearchSharpIcon 
           style={{padding:'7px', opacity: '0.8'}}/>
           </SearchIcon>

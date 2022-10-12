@@ -3,3 +3,4 @@ export {default as NavBar} from './NavBar.jsx';
 export {default as Card} from './Card.jsx';
 export {default as Comments} from './Comments.jsx';
 export {default as Logo} from './Logo.jsx';
+export {default as NavBarVideo} from './NavBarVideo.jsx';

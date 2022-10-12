@@ -13,14 +13,14 @@ const Container = styled.div`
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;
   padding-bottom: ${(props) => props.type === "sm" && "15px"};
-  
 `;
 
 const Image = styled.img`
   width: ${(props) => props.type === "sm" ? "200px":" 100%"};
  height: ${(props) => props.type === "sm" ? "110px":"155px"};
-  background-color: #999;
+  background-color: #A39980;
   flex: 1;
+  box-shadow: 0px 6px 8px rgba(25, 50, 47, 0.08),0px 3px 4px rgba(18, 71, 52, 0.02), 0px 1px 16px rgba(18, 71, 52, 0.03);
 `;
 
 const Details = styled.div`
@@ -35,11 +35,13 @@ float: ${(props) => props.type === "sm" && "right"};
 `;
 
 const ChannelImage = styled.img`
+
   width: 35px;
   height: 35px;
   border-radius: 50%;
   background-color:white;
   display: ${(props) => props.type === "sm" && "none"};
+  
 `;
 
 const Texts = styled.div`
@@ -48,7 +50,7 @@ const Texts = styled.div`
 const Title = styled.h1`
   font-size: 15px;
   font-weight: 500;
-  color: white;
+  color: black;
   margin-bottom:5px;
   display: inline-block;
 overflow: hidden;
@@ -61,13 +63,13 @@ display: -webkit-box;
 
 const ChannelName = styled.p`
   font-size: 14px;
-  color: #aaaaaa ;
+  color: #444444 ;
   margin:7px 0px;
 `;
 
 const Info = styled.div`
   font-size: 14px;
-  color:  #aaaaaa;
+  color:  #444444;
 `;
 
 const Card = ({ type, video }) => {

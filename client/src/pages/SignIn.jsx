@@ -6,7 +6,7 @@ import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
 import { auth, provider } from "../firebase";
 
 import { useNavigate } from "react-router-dom";
-import Youtube from '../imgs/logo1.png'
+import BeachTube from '../imgs/logo1.png'
 import { signInWithPopup } from "firebase/auth"
 
 const Container = styled.div`
@@ -16,17 +16,20 @@ const Container = styled.div`
   justify-content: center;
   height: calc(100vh - 56px);
   color: white;
+
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #333333;
-  color:white;
+  background-color: #8CCCC3;
+  color:Black;
   border-radius :10px;
   padding: 20px 50px;
   gap: 10px;
+  height:400px;
+  width:320px;
 `;
 
 const Title = styled.h1`
@@ -42,6 +45,7 @@ const Input = styled.input`
   background-color: transparent;
   width: 100%;
   color: white;
+
 `;
 
 const Button = styled.button`
@@ -50,13 +54,17 @@ const Button = styled.button`
   padding: 10px 20px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #373737;
-  color: #aaaaaa;
+  background-color: #54BAB9;
+  color: black;
+  font-family: GothicA1-Bold;
+  margin-bottom:20px;
 `;
 
 const Text = styled.p`
 color:white;
 cursor:pointer;
+color: black;
+
 `
 
 const Img = styled.img`
@@ -101,16 +109,16 @@ const SignIn = () => {
   return (
     <Container>
       <Wrapper>
-         <Img src={Youtube} alt='Youtube'/>
-        <Title>Sign in</Title>
-       <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/>
+         <Img src={BeachTube} alt='BeachTube'/>
+        <Title>Login</Title>
+        <div style={{margin:'15px 0px', width:'300px',paddingRight:'10px'}}>
+       <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/></div>
+        <div style={{marginBottom:'15px',width:'300px',paddingRight:'10px'}}>
+         <Input placeholder="Contraseña" type="password"  onChange={(e) => setPassword(e.target.value)}/></div>
+        <Button onClick={handleLogin}>Acceder</Button>
 
-         <Input placeholder="Contraseña" type="password"  onChange={(e) => setPassword(e.target.value)}/>
-        <Button onClick={handleLogin}>Sign in</Button>
-        <Title> O </Title> 
 
-        
-        <Button onClick={signinWithGoogle}>Sign in with Google</Button>
+
 
         <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
 

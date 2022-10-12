@@ -1,36 +1,40 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {Menu,NavBar,Logo} from './components/index';
 import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
 import {Wrapper} from './appStyles.js';
+import {Link,useNavigate} from 'react-router-dom';
 
 const Page = styled.div`
-background-color: #181818;
-color:white;
+background-color:#A39980;
 width:100%;
 height : 100vh;
 `
  const Main = styled.div`
 flex:7;
-background-color: #181818;
-color:white;
+background:linear-gradient(#E9DAC1,transparent);
+background-color:#D4C6AF  ;
+
 `
 const VideoMain = styled.div`
-background-color: #181818;
-color:white;
+background:linear-gradient(#E9DAC1,transparent);
+background-color: #AFA491  ;
 width:100%;
 position: relative;
      
 `
-const LogoContainer  = styled.div`
-position: absolute;
-z-index:10000;
-`
-;
+
 const LogoBox = styled.div`
-left:0;
-top:0;
+position:relative;
+margin-left: 20px;
+
 `
+const LogoConatiner = styled.div`
+position:absolute;
+z-index:1000;
+`;
+
+
 const NavContainer = styled.div`
 `
 export const RandomPage = () => {
@@ -50,26 +54,19 @@ export const RandomPage = () => {
 
 export const VideoPage = () => {
   const [sidebar, setSibebar] = useState(false);
-   // const [showComponent,SetshowComponent] = useState(false);
-     // useEffect(()=>{
-    //setInterval(()=>{
-      //SetshowComponent(!showComponent)
-   // },3000)
-  //},[])
+   const navigate = useNavigate();
   return (
     <>
-      {sidebar && <Menu setSidebar={setSibebar}/>}
         <VideoMain>
-          <LogoContainer>
-            <LogoBox>
-              <Logo/>
-            </LogoBox>
-          </LogoContainer>
-            <NavContainer>
+         <NavContainer>
+          <LogoBox>
+            <LogoConatiner>
+              <Logo onClick={() =>navigate('/')}/>
+            </LogoConatiner>
+          </LogoBox>
             <NavBar/>
           </NavContainer>
           <Wrapper>
-            { /*showComponent &&*/}
             <Video/>
           </Wrapper>
         </VideoMain>
