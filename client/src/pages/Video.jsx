@@ -13,7 +13,6 @@ import { dislike, fetchSuccess, like } from "../features/videoSlice";
 import { subscription } from "../features/userSlice";
 import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
-
 import UserDefault from '../imgs/user.png'
 
 const Container = styled.div`
@@ -160,17 +159,18 @@ const Video = () => {
     dispatch(subscription(channel._id));
   };
 
-
   return (
     <Container>
-     <Content>
+    
+    <Content>
       
         <VideoWrapper>
           <VideoFrame src={currentVideo.videoUrl} autoPlay controls />
         </VideoWrapper>
-        <Title >{currentVideo.title}</Title>
+        <Title >{currentVideo.title}</Title>   
+     
         <Details>
-         {/*<Try/>*/} 
+
           <Info>{currentVideo.views} vistas • {timeago(currentVideo.createdAt)}</Info>
           <Buttons>
             
@@ -213,11 +213,12 @@ const Video = () => {
               : "subscribirse"}
           </Subscribe>
         </Channel>
-     
+  
 				<Hr/>
 				<Comments videoId ={currentVideo._id}/>
       </Content>
-    <Recomendation tags={currentVideo.tags}/>
+
+    <Recomendation type='random'/>
     </Container>
   )
 };

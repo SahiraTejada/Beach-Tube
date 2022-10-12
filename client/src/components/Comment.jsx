@@ -5,6 +5,7 @@ import {timeago} from '../timeage_es';
 import UserDefault from '../imgs/user.png';
 
 
+
 const Container = styled.div`
 display:flex;
 gap:10px;
@@ -56,7 +57,7 @@ const Comment = ({ comment }) => {
   }, [comment.userId]);
 
   return (
-   
+   <>
     <Container>
       <Avatar src={channel.img ? (channel.img): (UserDefault)} />
      
@@ -67,7 +68,8 @@ const Comment = ({ comment }) => {
         <Text>{comment.desc}</Text>
       </Details>
     </Container>
-
+  
+</>
   );
 };
 export default Comment

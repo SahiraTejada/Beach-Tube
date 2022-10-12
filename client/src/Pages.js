@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Menu,NavBar,Logo} from './components/index';
 import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
@@ -50,6 +50,12 @@ export const RandomPage = () => {
 
 export const VideoPage = () => {
   const [sidebar, setSibebar] = useState(false);
+   // const [showComponent,SetshowComponent] = useState(false);
+     // useEffect(()=>{
+    //setInterval(()=>{
+      //SetshowComponent(!showComponent)
+   // },3000)
+  //},[])
   return (
     <>
       {sidebar && <Menu setSidebar={setSibebar}/>}
@@ -63,6 +69,7 @@ export const VideoPage = () => {
             <NavBar/>
           </NavContainer>
           <Wrapper>
+            { /*showComponent &&*/}
             <Video/>
           </Wrapper>
         </VideoMain>

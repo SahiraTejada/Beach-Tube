@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import Comment from './Comment';
 import axios from 'axios';
 import UserDefault from '../imgs/user.png';
-import { useLocation } from 'react-router-dom';
+
 const Container = styled.div`
 
 `;
@@ -61,7 +61,7 @@ const Comments = ({videoId}) => {
   const [desc, setDesc] = useState("");
   const [userId, setUserId] = useState({});
   const [inputs, setInputs] = useState({});
- 
+  const [reducerValue,forceUpdate] = useReducer(x=>x+1,0);
 
 
 
@@ -81,19 +81,13 @@ const Comments = ({videoId}) => {
     };
     
     fetchComments();
-  }, [videoId,currentUser._id]);
+  }, [videoId,currentUser._id,reducerValue]);
   
 
 const handleComment = async (e)=>{
-
-   try{
         const res = await axios.post(`/comments/`,{desc,videoId,userId});
         setInputs(res.data);
-        
-
-   }catch(err){}
- 
-
+        forceUpdate();
 }
 
   return (

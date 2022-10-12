@@ -7,15 +7,15 @@ const Container = styled.div`
 flex:2;
 margin-left:30px;
 `
-const Recomendation = ({tags}) => {
+const Recomendation = ({type}) => {
     const [videos,setVideos] = useState([])
     useEffect(()=>{
         const fetchVideos = async () =>{
-            const res = await axios.get(`/videos/tags?tags=${tags}`)
+            const res = await axios.get(`/videos/${type}`)
             setVideos(res.data)
         }
         fetchVideos()
-    },[tags])
+    },[type])
   return (
     <Container>
         {videos.map((video) => (
