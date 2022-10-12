@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../features/userSlice";
-import { auth, provider } from "../firebase";
-
 import { useNavigate } from "react-router-dom";
 import BeachTube from '../imgs/logo1.png'
-import { signInWithPopup } from "firebase/auth"
+
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: calc(100vh - 56px);
-  color: white;
+  color: black;
 
 `;
 
@@ -24,7 +22,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #8CCCC3;
-  color:Black;
+  color:black;
   border-radius :10px;
   padding: 20px 50px;
   gap: 10px;
@@ -44,7 +42,7 @@ const Input = styled.input`
   padding: 10px;
   background-color: transparent;
   width: 100%;
-  color: white;
+  color: black;
 
 `;
 
@@ -87,24 +85,6 @@ const SignIn = () => {
       dispatch(loginFailure());
     }
   };
-
-  const signinWithGoogle = async ()=>{
-    dispatch(loginStart());
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        axios
-        .post("/auth/google", {
-          name: result.user.displayName,
-          email: result.user.email,
-          img: result.user.photoURL,
-        })
-        .then((res)=>{
-        dispatch(loginSuccess(res.data));
-      });
-    })
-    .catch((loginFailure)=>{});
-      dispatch(loginFailure());
-  }
   
   return (
     <Container>
@@ -115,19 +95,10 @@ const SignIn = () => {
        <Input  placeholder="Email" type='email' onChange={(e) => setEmail(e.target.value)}/></div>
         <div style={{marginBottom:'15px',width:'300px',paddingRight:'10px'}}>
          <Input placeholder="Contraseña" type="password"  onChange={(e) => setPassword(e.target.value)}/></div>
+       
         <Button onClick={handleLogin}>Acceder</Button>
-
-
-
-
-        <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>
-
-        
-
-        
-        
+        <Text onClick={() =>navigate('/signup')}>No tienes una cuenta?</Text>        
       </Wrapper>
-      
     </Container>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { keyframes } from 'styled-components'
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
-import ReplyIcon from '@mui/icons-material/Reply';
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comments from "../components/Comments";
@@ -13,8 +13,13 @@ import { dislike, fetchSuccess, like } from "../features/videoSlice";
 import { subscription } from "../features/userSlice";
 import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
+import UserDefault from '../imgs/user.png';
 
-import UserDefault from '../imgs/user.png'
+
+const breatheAnimation = keyframes`
+ 0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+`
 
 const Container = styled.div`
 margin: 20px 50px;
@@ -127,30 +132,73 @@ const VideoFrame = styled.video`
   object-fit: cover;
 
 `;
+const Progress = styled.div`
+background-color:'#E9DAC1',
+position:relative;
+width:100%
+height:100vh;
+ box-sizing: border-box;
+ display: flex;
+        justify-content: space-between;
+        align-items: center;
 
+`
+const ProgressCircle = styled.div`
+
+`
+const Outercircle= styled.div`
+    width: 4.4rem;
+    height: 4.4rem;
+    background-color: #fff;
+    margin: 200px 660px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+`
+
+const InnerCircle = styled.div`
+  border-radius: inherit;
+    background-image: conic-gradient(#fff,  #9ED2C6, #8CCCC3);
+    position: absolute;
+    z-index: -1;
+    margin: auto;
+    top: -0.8rem;
+    bottom: -0.8rem;
+    left: -0.8rem;
+    right: -0.8rem;
+    animation: ${breatheAnimation} 0.6s linear infinite;
+
+`
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
+  const [loading,setLoading] = useState(false);
   const dispatch = useDispatch();
-
   const path = useLocation().pathname.split("/")[2];
-
   const [channel, setChannel] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
+
+ const fetchData = async () => {
       try {
         const videoRes = await axios.get(`/videos/find/${path}`);
         const channelRes = await axios.get(
           `/users/find/${videoRes.data.userId}`
         );
         setChannel(channelRes.data);
+      
         dispatch(fetchSuccess(videoRes.data));
+        setLoading(true);
       } catch (err) {}
     };
+  useEffect(() => {
+   
     fetchData();
-  }, [path, dispatch]);
-
+  }, []);
+  
+  
   const handleLike = async () => {
     await axios.put(`/users/like/${currentVideo._id}`);
     dispatch(like(currentUser._id));
@@ -166,20 +214,18 @@ const Video = () => {
       : await axios.put(`/users/sub/${channel._id}`);
     dispatch(subscription(channel._id));
   };
-
-  return (
+console.log(loading);
+  return ( 
+  <> {loading ?
     <Container>
      <Content>
-      
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} controls />
+          <VideoFrame src={currentVideo.videoUrl} controls autoPlay />
         </VideoWrapper>
         <Title >{currentVideo.title}</Title>
         <Details>
-         {/*<Try/>*/} 
           <Info>{currentVideo.views} vistas • {timeago(currentVideo.createdAt)}</Info>
           <Buttons>
-            
              <Button onClick={handleLike}>
               {currentVideo.likes?.includes(currentUser?._id) ? (
                 <ThumbUpIcon />
@@ -196,8 +242,6 @@ const Video = () => {
               )}{" "}
               No me gusta
             </Button>
-          
-    
           </Buttons>
         </Details>
         <Hr/>
@@ -222,7 +266,17 @@ const Video = () => {
 				<Comments videoId ={currentVideo._id}/>
       </Content>
     <Recomendation type='random'/>
-    </Container>
+    </Container> :
+    <Progress>
+      <ProgressCircle>
+      <Outercircle>
+        <InnerCircle>
+           
+        </InnerCircle>
+        </Outercircle>
+      </ProgressCircle>
+      </Progress>}
+    </> 
   )
 };
 

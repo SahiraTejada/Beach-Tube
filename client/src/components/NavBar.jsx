@@ -8,7 +8,9 @@ import { useSelector} from 'react-redux';
 import Upload from "./Upload";
 import Popper from '@mui/material/Popper';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import UserDefault from '../imgs/user.png'
+import UserDefault from '../imgs/user.png';
+import { logout } from "../features/userSlice";
+import SignIn from "../pages/SignUp";
 
 
 
@@ -57,8 +59,8 @@ const Input = styled.input`
 const Button = styled.button`
  padding: 5px 15px;
   background-color: transparent;
-  border: 1px solid #3ea6ff;
-  color: #3ea6ff;
+  border: 1px solid #303030;
+  color: #303030;
   border-radius: 3px;
   font-weight: 500;
   margin-top: 10px;
@@ -67,7 +69,7 @@ const Button = styled.button`
   align-items: center;
   gap: 5px;
   text-transform:uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   
 `;
 const Content = styled.div`
@@ -148,12 +150,16 @@ const NavBar = () => {
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useNavigate();
+  const [logout,setLogout] = useState(false)
   
   
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
-
+  const handleLogout = () =>{
+    navigate('/signin')
+  }
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
   
@@ -169,8 +175,7 @@ const NavBar = () => {
           style={{padding:'7px', opacity: '0.8'}}/>
           </SearchIcon>
         </Search>  
-          {currentUser ? (
-            <User>
+          {currentUser ? (<User>
               <VideoCallSharpIcon onClick={() => setOpen(true)} />
               <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} onClick={handleClick}/>
                <Popper id={id} open={opened} anchorEl={anchorEl} className='popper'>
@@ -179,7 +184,7 @@ const NavBar = () => {
         <DetailsAccount >{currentUser.name}</DetailsAccount>
         <DetailsAccount style={{paddingTop:'7px'}}> {currentUser.email}</DetailsAccount>
         <Hr/> 
-          <div onClick={()=> navigate('/signin')}>
+          <div onClick={handleLogout}>
         <Logout style={{ textDecoration: "none" }}>
         <LogoutRoundedIcon style={{paddingRight:'5px'}}/> Cerrar sesión</Logout> 
           </div>
@@ -187,7 +192,9 @@ const NavBar = () => {
 
               </Popper>
             </User>
+           
           ) : (
+             
             <Link to="signin" style={{ textDecoration: "none" }}>
               <Button>
                 <AccountCircleSharpIcon />
@@ -198,6 +205,8 @@ const NavBar = () => {
       </Wrapper>
     </Container>
     {open && <Upload setOpen={setOpen}/>}
+ 
+   
     </>
   )
 }

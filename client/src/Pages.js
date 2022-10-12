@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {Menu,NavBar,Logo} from './components/index';
 import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
 import {Wrapper} from './appStyles.js';
-import {Link,useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Page = styled.div`
 background-color:#A39980;
@@ -53,7 +53,6 @@ export const RandomPage = () => {
 }
 
 export const VideoPage = () => {
-  const [sidebar, setSibebar] = useState(false);
    const navigate = useNavigate();
   return (
     <>
@@ -77,6 +76,7 @@ export const VideoPage = () => {
 
 
 export const SigninPage = () => {
+
   return (
       <Page>
         <SignIn/>

@@ -63,7 +63,7 @@ const ChooseFile = styled.button`
     position:relative;
     display:inline-block;    
 	border-radius:8px;
-    border:#ebebeb solid 1px;
+    border:#E9DAC1 solid 1px;
     width:250px; 
  align-items:center;
  padding: 10px 5px;
@@ -71,7 +71,7 @@ const ChooseFile = styled.button`
     font-family: GothicA1-Bold;
     color: #373737;
     margin-top: 2px;
-	background:white;
+	background:#E9DAC1;;
   margin-bottom:7px;
   font-size:14px;
   

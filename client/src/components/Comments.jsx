@@ -64,10 +64,6 @@ const Comments = ({videoId}) => {
   const [inputs, setInputs] = useState({});
   const [reducerValue,forceUpdate] = useReducer(x=>x+1,0);
 
-
-
-
-
   useEffect(() => {
    
     const fetchComments = async () => {
@@ -97,7 +93,7 @@ const handleComment = async (e)=>{
          <Avatar src={currentUser.img ? (currentUser.img): (UserDefault)} />
       
         <Input onClick={()=> setShow(true)} onChange={(e) => setDesc(e.target.value)} 
-        placeholder="Add a comment..." />
+        placeholder="Añadir comentarios..." />
        
       </NewComment> {
        show ?  <Buttons><Button  onClick={()=> setShow(false)} type="cancel">Cancelar </Button><Button onClick={handleComment}>Comentar</Button></Buttons>: null

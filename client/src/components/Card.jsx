@@ -45,6 +45,12 @@ const ChannelImage = styled.img`
 `;
 
 const Texts = styled.div`
+  display: inline-block;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2; // max nb lines to show
+-webkit-box-orient: vertical;
 `;
 
 const Title = styled.h1`
@@ -58,7 +64,7 @@ text-overflow: ellipsis;
 display: -webkit-box;
 -webkit-line-clamp: 2; // max nb lines to show
 -webkit-box-orient: vertical;
-    
+max-width:200px;
 `;
 
 const ChannelName = styled.p`

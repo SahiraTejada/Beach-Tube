@@ -13,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: calc(100vh - 56px);
-  color: white;
+  color: black;
 
 `;
 
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #8CCCC3;
-  color:Black;
+  color:black;
   border-radius :10px;
   padding: 20px 50px;
   gap: 10px;
@@ -68,13 +68,13 @@ const ChooseFile = styled.button`
     position:relative;
     display:inline-block;    
 	border-radius:8px;
-    border:#ebebeb solid 1px;
+    border:#E9DAC1 solid 1px;
     width:250px; 
     padding: 4px 6px 4px 8px;
     font: normal 14px Myriad Pro, Verdana, Geneva, sans-serif;
     color: black;
     margin-top: 2px;
-	background:white;
+	background:#E9DAC1;
   margin-bottom:7px;
 `
 

@@ -41,7 +41,6 @@ const Avatar = styled.img`
 `;
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
- const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchComment = async () => {
