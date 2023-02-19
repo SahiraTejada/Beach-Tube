@@ -108,13 +108,13 @@ const Card = ({ type, video }) => {
           <div>
             <ChannelImage
               type={type}
-              src={channel.img ? (channel.img): (UserDefault)}
+              src={channel?.img || UserDefault}
               style={{position:'static'}}
             />
             </div>
           <Texts>
             <Title >{video.title}</Title>
-            <ChannelName>{channel.name}</ChannelName>
+            <ChannelName>{channel?.name|| "unknown"}</ChannelName>
             <Info>{video.views} vistas • {timeago(video.createdAt)}</Info>
           </Texts>
         </Details>
