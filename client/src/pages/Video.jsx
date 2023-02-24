@@ -179,7 +179,7 @@ const Video = () => {
   const dispatch = useDispatch();
   const path = useLocation().pathname.split("/")[2];
   const [channel, setChannel] = useState({});
-
+  
 
  const fetchData = async () => {
       try {
@@ -215,6 +215,8 @@ const Video = () => {
     dispatch(subscription(channel._id));
   };
 console.log(loading);
+console.log(currentVideo);
+   //if (!exerciseVideos.length) return <Loader />;
   return ( 
   <> {loading ?
     <Container>
@@ -247,10 +249,10 @@ console.log(loading);
         <Hr/>
         <Channel>
           <ChannelInfo>
-						<Avatar src={channel.img ? (channel.img): (UserDefault)}/>
+						<Avatar src={channel?.img || UserDefault}/>
 					
 					<ChannelDetail>
-						<ChannelName>{channel.name}</ChannelName>
+						<ChannelName>{channel?.name|| "unknown"}</ChannelName>
 						<ChannelCounter>{channel.subscribers} suscriptores</ChannelCounter>
 						<Description>{currentVideo.desc}</Description>
 					</ChannelDetail>

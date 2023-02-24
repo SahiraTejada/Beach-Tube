@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link} from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import styled from "styled-components";
 import {timeago} from '../timeage_es';
 import UserDefault from '../imgs/user.png'
@@ -81,6 +81,7 @@ const Info = styled.div`
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
   const [view, setView] = useState();
+  const history = useNavigate ();
 
 
   useEffect(() => {
@@ -96,9 +97,19 @@ const Card = ({ type, video }) => {
     setView(Viewres.data);
   }
   
+  const navigate = useNavigate();
+   function handleClick({videoId}) {
+    navigate(`/video/${videoId}`);
+  }
+
+  const handleClickVideos = () => {
+    handleviews();
+    navigate(`/video/${video._id}`, { video });
+  }
+ 
   return (
-      <Container type={type}  title = {video.title} onClick={handleviews}>
-          <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
+      <Container type={type}  title = {video.title} onClick={handleClickVideos}>
+          
           <Image
           type={type}
           src={video.imgUrl}
@@ -118,7 +129,7 @@ const Card = ({ type, video }) => {
             <Info>{video.views} vistas • {timeago(video.createdAt)}</Info>
           </Texts>
         </Details>
-        </Link>
+    
       </Container>
 
   );
