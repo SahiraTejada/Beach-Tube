@@ -35,11 +35,7 @@ const Title = styled.h1`
   padding: 15px;
 `;
 
-const ContentInput= styled.div`
-margin:15px 0px
-width:400px
 
-`
 const Input = styled.input`
   border: 1px solid #373737;
   border-radius: 3px;
@@ -155,9 +151,6 @@ const SignIn = () => {
       <Wrapper>
         <Img src={BeachTube} alt='BeachTube'/>
         <Title>Sign Up</Title>
-       
-       
- 
         <Input
           placeholder="Usuario"
           name="name"

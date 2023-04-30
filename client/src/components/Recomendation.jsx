@@ -16,10 +16,14 @@ const Recomendation = ({type}) => {
         }
         fetchVideos()
     },[type])
+
+    const handleReoad = () => {
+    window.location.reload();
+  };
   return (
     <Container>
         {videos.map((video) => (
-            <Card type='sm' key={video._id} video={video}/>
+            <Card type='sm' key={video._id} video={video} onClick={handleReoad}/>
         ))}
     </Container>
   )

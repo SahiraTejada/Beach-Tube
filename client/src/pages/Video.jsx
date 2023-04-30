@@ -14,6 +14,7 @@ import { subscription } from "../features/userSlice";
 import {timeago} from '../timeage_es';
 import Recomendation from "../components/Recomendation";
 import UserDefault from '../imgs/user.png';
+import Dialog from "../components/Dialog";
 
 
 const breatheAnimation = keyframes`
@@ -149,7 +150,7 @@ const ProgressCircle = styled.div`
 const Outercircle= styled.div`
     width: 4.4rem;
     height: 4.4rem;
-    background-color: #fff;
+    background-color: #E9DAC1;
     margin: 200px 660px;
     position: absolute;
     top: 0;
@@ -216,9 +217,13 @@ const Video = () => {
   };
 console.log(loading);
 console.log(currentVideo);
-   //if (!exerciseVideos.length) return <Loader />;
+
   return ( 
-  <> {loading ?
+  <> 
+    {currentUser ? (
+      <>
+      
+      {loading ?
     <Container>
      <Content>
         <VideoWrapper>
@@ -278,7 +283,11 @@ console.log(currentVideo);
         </Outercircle>
       </ProgressCircle>
       </Progress>}
-    </> 
+      </>
+    ) : (
+      <Dialog/>
+    )}
+   </> 
   )
 };
 

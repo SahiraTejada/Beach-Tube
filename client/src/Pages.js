@@ -12,13 +12,11 @@ height : 100vh;
 `
  const Main = styled.div`
 flex:7;
-background:linear-gradient(#E9DAC1,transparent);
-background-color:#D4C6AF  ;
+background-color:#E9DAC1;
 
 `
 const VideoMain = styled.div`
-background:linear-gradient(#E9DAC1,transparent);
-background-color: #AFA491  ;
+background-color:#E9DAC1;
 width:100%;
 position: relative;
      
@@ -27,6 +25,7 @@ position: relative;
 const LogoBox = styled.div`
 position:relative;
 margin-left: 20px;
+background-color: #FFFF;
 
 `
 const LogoConatiner = styled.div`
@@ -36,7 +35,8 @@ z-index:1000;
 
 
 const NavContainer = styled.div`
-`
+`;
+
 export const RandomPage = () => {
  
   return (
@@ -63,7 +63,7 @@ export const VideoPage = () => {
               <Logo onClick={() =>navigate('/')}/>
             </LogoConatiner>
           </LogoBox>
-            <NavBar/>
+          <NavBar />
           </NavContainer>
           <Wrapper>
             <Video/>

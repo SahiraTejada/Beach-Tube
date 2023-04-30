@@ -9,9 +9,8 @@ import Upload from "./Upload";
 import Popper from '@mui/material/Popper';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import UserDefault from '../imgs/user.png';
+import { useDispatch } from "react-redux";
 import { logout } from "../features/userSlice";
-import SignIn from "../pages/SignUp";
-
 
 
 const Container = styled.div`
@@ -26,22 +25,27 @@ const Wrapper = styled.div`
 display:flex;
 align-items:center;
 padding: 0px 18px;
-justify-content: flex-end;
+justify-content: space-between;
 
 `;
 
 const Search = styled.div`
-display: flex;
+  display: flex;
   align-items: center;
   flex-grow: 1;
   justify-content: center;
   padding: 20px 0px;
-  padding-top: 10px;
+  padding-top: 70px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
 `;
 
 const Input = styled.input`
   font-family: Roboto-Regular;
-  width: 50%;
+  width: 550px;
   height: 32px;
   background-color: #E9DAC1;
   padding-left: 10px;
@@ -118,11 +122,14 @@ const Avatar = styled.img`
 
 
 const User = styled.div`
-display:flex;
-align-items:center;
-gap:12px;
-cursor: pointer;
-padding-bottom:13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding-bottom: 13px;
+  position: fixed;
+  right: 20px;
+  padding-top: 70px;
 `;
 
 
@@ -150,18 +157,21 @@ const NavBar = () => {
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch = useNavigate();
-  const [logout,setLogout] = useState(false)
+  const dispatch = useDispatch();
+ 
   
   
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
-  const handleLogout = () =>{
-    navigate('/signin')
-  }
+
   const opened = Boolean(anchorEl);
   const id = opened ? 'simple-popper' : undefined;
+
+  const handleLogout = () => {
+  dispatch(logout());
+  navigate('/signin')
+};
   
   return (
     <>
@@ -194,13 +204,13 @@ const NavBar = () => {
             </User>
            
           ) : (
-             
+             <User>
             <Link to="signin" style={{ textDecoration: "none" }}>
               <Button>
                 <AccountCircleSharpIcon />
-                SIGN IN
+                LOGIN
               </Button>
-            </Link>
+            </Link></User>
           )}
       </Wrapper>
     </Container>

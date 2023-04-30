@@ -9,7 +9,7 @@ const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "240px"};
   margin-bottom: ${(props) => (props.type !== "sm" && "45px")};
   cursor: pointer;
-  margin: ${(props) => props.type === "sm" ? "0px":"15px"};
+  margin: ${(props) => props.type === "sm" ? "0px":"10px"};
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;
   padding-bottom: ${(props) => props.type === "sm" && "15px"};
@@ -81,7 +81,7 @@ const Info = styled.div`
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
   const [view, setView] = useState();
-  const history = useNavigate ();
+
 
 
   useEffect(() => {
@@ -98,13 +98,11 @@ const Card = ({ type, video }) => {
   }
   
   const navigate = useNavigate();
-   function handleClick({videoId}) {
-    navigate(`/video/${videoId}`);
-  }
 
   const handleClickVideos = () => {
     handleviews();
     navigate(`/video/${video._id}`, { video });
+    window.location.reload();
   }
  
   return (
