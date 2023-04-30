@@ -1,12 +1,13 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import styled from 'styled-components';
 import {VideoPage,RandomPage,TrendsPage,SubPage,SigninPage,SearchPage,SignUpPage} from './Pages.js'
-
+import { useDispatch, useSelector } from "react-redux";
 const Container = styled.div`
 display:flex;
 `;
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
    <Container>
       <BrowserRouter>

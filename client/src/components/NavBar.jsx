@@ -35,7 +35,7 @@ const Search = styled.div`
   flex-grow: 1;
   justify-content: center;
   padding: 20px 0px;
-  padding-top: 70px;
+  padding-top: 80px;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -129,7 +129,7 @@ const User = styled.div`
   padding-bottom: 13px;
   position: fixed;
   right: 20px;
-  padding-top: 70px;
+  padding-top: 80px;
 `;
 
 
@@ -205,12 +205,12 @@ const NavBar = () => {
            
           ) : (
              <User>
-            <Link to="signin" style={{ textDecoration: "none" }}>
-              <Button>
+          
+              <Button style={{ textDecoration: "none" }} onClick={() => navigate('/signin')}>
                 <AccountCircleSharpIcon />
                 LOGIN
               </Button>
-            </Link></User>
+            </User>
           )}
       </Wrapper>
     </Container>

@@ -4,6 +4,8 @@ import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
 import {Wrapper} from './appStyles.js';
 import {useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Page = styled.div`
 background-color:#A39980;
@@ -85,13 +87,14 @@ export const SigninPage = () => {
 }
 
 export const SubPage = () => {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <>
       <Menu/>
         <Main>
           <NavBar/>
           <Wrapper>
-            <Home type='sub'/>
+             {currentUser ? ( <Home type='sub'/>):(<div/>)}
           </Wrapper>
         </Main>
     </>
