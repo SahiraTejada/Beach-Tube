@@ -1,6 +1,6 @@
 # Beach Tube
 
-Dynamic platform that is dedicated to sharing videos.
+Dynamic platform that is dedicated to sharing videos with a beach themed.
 
 ![BeachTubeBG](https://user-images.githubusercontent.com/81046432/235363902-0160d3df-3995-4018-b836-949fa2334464.png)
 
