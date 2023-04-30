@@ -17,6 +17,38 @@ Dynamic platform that is dedicated to sharing videos.
 - [Firebase](https://firebase.google.com/?hl=es)
 - [MongoDB Altas](https://www.mongodb.com/atlas/database)
 
+## Installation
+
+1. First make sure you have Node.js and  Git installed and running.
+
+```bash
+node -v
+git -v
+```
+2. Clone the repository 
+
+```bash
+git clone https://github.com/SahiraTejada/Beach-Tube
+cd Beach-Tube
+
+```
+3. Set Up the Server 
+
+```
+ cd server
+ npm install
+ npm start
+```
+4. Set Up the React Application 
+
+```
+ cd client
+ npm install
+ npm start
+```
+
+5. Your project is up and running  🎉. 
+
 ### Integrantes
 
 - Carlos Rosario - 1100517
