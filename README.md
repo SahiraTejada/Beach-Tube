@@ -1,13 +1,21 @@
-# Proyecto Final IDS348L-1-LABORATORIO DESARROLLO DE APLICACIONES WEB
+# Beach Tube
 
-## Beach Tube
+Dynamic platform that is dedicated to sharing videos.
 
-### Tecnologias utilizadas
-1. Redux
-2. Mongo DB Altas
-3. Firebase
-4. Express
-5. React
+![BeachTubeBG](https://user-images.githubusercontent.com/81046432/235363902-0160d3df-3995-4018-b836-949fa2334464.png)
+
+
+## Tech Stack
+
+🖥️ *Client*
+- [React](https://legacy.reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Material-UI](https://mui.com/)
+- [styled-components](https://styled-components.com/)
+
+🌐 *Server*
+- [Firebase](https://firebase.google.com/?hl=es)
+- [MongoDB Altas](https://www.mongodb.com/atlas/database)
 
 ### Integrantes
 
