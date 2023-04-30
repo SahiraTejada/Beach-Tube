@@ -16,6 +16,7 @@ Dynamic platform that is dedicated to sharing videos.
 🌐 *Server*
 - [Firebase](https://firebase.google.com/?hl=es)
 - [MongoDB Altas](https://www.mongodb.com/atlas/database)
+- [Express](https://expressjs.com/)
 
 ## Installation
 
