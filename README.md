@@ -25,21 +25,21 @@ Dynamic platform that is dedicated to sharing videos.
 node -v
 git -v
 ```
-2. Clone the repository 
+2. Clone the repository.
 
 ```bash
 git clone https://github.com/SahiraTejada/Beach-Tube
 cd Beach-Tube
 
 ```
-3. Set Up the Server 
+3. Set Up the Server. 
 
 ```
  cd server
  npm install
  npm start
 ```
-4. Set Up the React Application 
+4. Set Up the React Application.
 
 ```
  cd client
@@ -47,12 +47,12 @@ cd Beach-Tube
  npm start
 ```
 
-5. Your project is up and running  🎉. 
+5. Your project is up and running  🚀🎉. 
 
-### Integrantes
+## Authors
 
-- Carlos Rosario - 1100517
-- Sahira Tejada - 10908917
-- Leonel Rodríguez - 1098665
+- [Sahira Tejada](https://github.com/SahiraTejada)
+- [Leonel Rodríguez](https://github.com/LeonelRod)
+- [Carlos Rosario](https://github.com/carlosrosarior)
 
 
