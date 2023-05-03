@@ -4,7 +4,7 @@ import {Home,Video,SignIn,Search,SignUp} from './pages/index';
 import styled from 'styled-components';
 import {Wrapper} from './appStyles.js';
 import {useNavigate} from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 
 const Page = styled.div`
@@ -37,6 +37,12 @@ z-index:1000;
 
 
 const NavContainer = styled.div`
+position:sticky;
+top:0px;
+background-color: #8CCCC3;
+color: #303030;
+height:8.8vh;
+z-index:1;
 `;
 
 export const RandomPage = () => {
